@@ -11,7 +11,7 @@ export const SearchHomepage = () => {
                                 className="flex-1 py-4 md:py-auto w-full md:w-auto grow rounded-md px-5"
                                 placeholder="Cari keyword pelayanan, contoh : KTP, Nikah, Pajak, dan lain -lain "
                             />
-                            <button className="flex-none w-full md:w-40 px-8 py-3 bg-green_primary text-white font-semibold rounded-md">
+                            <button className="flex-none w-full md:w-40 px-8 py-3 bg-black_line text-white font-semibold rounded-md">
                                 Cari Pelayanan
                             </button>
                         </div>
