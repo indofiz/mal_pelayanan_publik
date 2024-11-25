@@ -6,7 +6,7 @@ import { PetaFooter } from './peta'
 export const Footer = () => {
     return (
         <>
-            <div className="mt-12 text-black_line -mb-40 pb-8 mx-4 bg-gradient-to-b overflow-clip before:content-[''] before:absolute before:-z-10 before:bg-auto before:inset-0 before:bg-gradient-fot before:bg-right-bottom before:bg-no-repeat from-grad_sec_top to-grad_sec_bot relative z-20 p-4 rounded-3xl">
+            <div className="md:container md:mx-auto md:flex md:gap-8 mt-12 text-black_line -mb-40 pb-8 mx-4 bg-gradient-to-b overflow-clip before:content-[''] before:absolute before:-z-10 before:bg-auto before:inset-0 before:bg-gradient-fot before:bg-right-bottom before:bg-no-repeat from-grad_sec_top to-grad_sec_bot relative z-20 p-4 rounded-3xl">
                 <PetaFooter />
                 <MapKontak />
             </div>

@@ -3,7 +3,8 @@ const TitleHeader = ({
     subTitle,
 }: {
     title: string
-    subTitle: string
+    subTitle?: string
+    isHidden?: boolean
 }) => {
     return (
         <div className="flex text-black_line flex-col gap-3 mt-12 mx-4 px-2 justify-center items-center mb-8">
