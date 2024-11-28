@@ -9,7 +9,10 @@ export const Heading3 = ({
 }) => {
     return (
         <h3
-            className={cn('text-center font-semibold text-2xl mb-6', className)}
+            className={cn(
+                'text-center font-semibold text-2xl md:text-4xl md:text-left mb-6',
+                className
+            )}
         >
             {title}
         </h3>

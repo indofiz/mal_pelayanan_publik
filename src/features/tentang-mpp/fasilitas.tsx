@@ -1,3 +1,4 @@
+import { cn } from '@/utils/utils'
 import { Heading3 } from '../../components/heading3'
 
 const images = [
@@ -14,10 +15,10 @@ const images = [
 
 export const FasilitasMPP = () => {
     return (
-        <section className="mt-12">
-            <Heading3 title="Fasilitas MPP" />
-            <div className="container mx-auto">
-                <div className="grid grid-cols-2 gap-3 px-6">
+        <section className="container mx-auto mt-12 md:mt-24">
+            <Heading3 title="Fasilitas MPP" className="ml-6 mb-12" />
+            <div className="">
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 px-6">
                     {images.map((image, index) => {
                         // Check if the index corresponds to a full-width image
                         const isFullWidth = index % 3 === 0 // 0, 3, 6, 9...
@@ -25,7 +26,10 @@ export const FasilitasMPP = () => {
                         return (
                             <div
                                 key={index}
-                                className={isFullWidth ? 'col-span-2' : ''}
+                                className={cn(
+                                    'lg:col-span-1',
+                                    isFullWidth ? 'col-span-2' : ''
+                                )}
                             >
                                 <img
                                     src={image}

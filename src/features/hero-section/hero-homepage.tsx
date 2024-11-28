@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 
 export const HeroHomepage = () => {
     return (
-        <div className="container mx-auto pt-6 pb-0">
+        <div className="container mx-auto pt-6 pb-0 md:pb-20">
             <div className="mb-8 px-6 md:max-w-5xl md:mx-auto md:mt-16">
-                <h2 className="text-center font-bold text-2xl md:text-6xl md:px-12 text-black_line mb-3 leading-8 md:leading-tight">
+                <h2 className="text-center font-bold text-2xl md:text-5xl lg:text-6xl md:px-12 text-black_line mb-3 leading-8 md:leading-tight lg:leading-snug">
                     Selamat Datang di Mal Pelayanan Publik (MPP) Kota
                     Pangkalpinang
                 </h2>
@@ -16,14 +16,14 @@ export const HeroHomepage = () => {
             </div>
             <div className="flex gap-2 flex-col md:flex-row px-6 mb-8 md:max-w-5xl md:mx-auto md:justify-center md:mb-28">
                 <Link
-                    className="h-14 flex gap-3 justify-center items-center rounded-md font-medium text-white bg-green_primary px-8 "
+                    className="h-14 flex gap-3 justify-center items-center hover:bg-black_line hover:text-white transition-all duration-200 rounded-md font-medium text-white bg-green_primary px-8 "
                     to={'/antrian'}
                 >
                     <FaRegAddressBook size={24} strokeWidth={0.1} />
                     Ambil Antrian
                 </Link>
                 <Link
-                    className="h-14 flex gap-3 justify-center items-center rounded-md font-medium text-black_line bg-yellow_primary px-8 "
+                    className="h-14 flex gap-3 justify-center items-center hover:bg-black_line hover:text-white transition-all duration-200 rounded-md font-medium text-black_line bg-yellow_primary px-8 "
                     to={'/survey'}
                 >
                     <RiSurveyLine size={24} strokeWidth={0.1} />

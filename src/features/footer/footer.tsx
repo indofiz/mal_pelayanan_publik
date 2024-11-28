@@ -6,16 +6,18 @@ import { PetaFooter } from './peta'
 export const Footer = () => {
     return (
         <>
-            <div className="md:container md:mx-auto md:flex md:gap-8 mt-12 text-black_line -mb-40 pb-8 mx-4 bg-gradient-to-b overflow-clip before:content-[''] before:absolute before:-z-10 before:bg-auto before:inset-0 before:bg-gradient-fot before:bg-right-bottom before:bg-no-repeat from-grad_sec_top to-grad_sec_bot relative z-20 p-4 rounded-3xl">
+            <div className="md:px-12 md:container md:justify-center md:items-center md:mx-auto md:flex md:gap-8 mt-12 md:mt-24 text-black_line -mb-40 pb-8 mx-4 bg-gradient-to-b overflow-clip before:content-[''] before:absolute before:-z-10 before:bg-auto before:inset-0 before:bg-gradient-fot before:bg-right-bottom before:bg-no-repeat from-grad_sec_top to-grad_sec_bot relative z-20 p-4 md:p-12 md:py-16 rounded-3xl">
                 <PetaFooter />
                 <MapKontak />
             </div>
             <footer className="bg-black_line text-white pt-52">
-                <LogoFooter />
-                <MenuFooter />
-                <h6 className="bg-black_2 text-center py-4 mt-12">
-                    Copyright &copy; Pangkalpinang {new Date().getFullYear()}
-                    <br /> Pangkalpinang, Pangkal Kemenangan
+                <div className="container mx-auto lg:flex lg:justify-between">
+                    <LogoFooter />
+                    <MenuFooter />
+                </div>
+                <h6 className="bg-black_2 text-center py-4 mt-12 px-6 md:px-0">
+                    Copyright &copy; Pangkalpinang {new Date().getFullYear()}{' '}
+                    Pangkalpinang, Pangkal Kemenangan
                 </h6>
             </footer>
         </>

@@ -32,12 +32,19 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from '@/components/ui/popover'
-import { Check, ChevronsUpDown, Square, SquareCheck } from 'lucide-react'
+import {
+    Check,
+    ChevronsUpDown,
+    Save,
+    Square,
+    SquareCheck,
+    TimerReset,
+} from 'lucide-react'
 import { toast } from '@/hooks/use-toast'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
 const formSchema = z.object({
-    usia: z.number(),
+    usia: z.number().min(17, { message: 'Usia minimal 17 tahun' }).max(100),
     pendidikan: z.string(),
     pekerjaan: z.string(),
     status_kawin: z.string().optional(),
@@ -411,7 +418,14 @@ export default function SurveyForm1() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Submit</Button>
+                <div className="flex justify-end gap-2 mt-12">
+                    <Button type="reset" variant="outline" size={'lg'}>
+                        <TimerReset /> Reset
+                    </Button>
+                    <Button type="submit" size={'lg'}>
+                        <Save /> Submit
+                    </Button>
+                </div>
             </form>
         </Form>
     )

@@ -36,7 +36,7 @@ const data: IData[] = [
 
 const MenuFooter = () => {
     return (
-        <div className="px-4 mt-12">
+        <div className="px-4 mt-12 md:flex md:flex-row md:justify-evenly lg:justify-between md:gap-14">
             {data.map((item) => (
                 <MenuList item={item} />
             ))}
