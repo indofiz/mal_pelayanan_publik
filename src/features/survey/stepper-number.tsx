@@ -1,4 +1,5 @@
-import { SurveyForm2 } from './survey-form-2'
+import StepperContentSurvey from './stepper/stepper-content'
+import StepperSurvey from './stepper/stepper-survey'
 
 const StepperNumber = () => {
     return (
@@ -41,9 +42,10 @@ const StepperNumber = () => {
                             </div>
                         </div>
                     </div>
+                    <StepperSurvey />
 
                     <div className="mx-4 mt-8 md:mt-12 md:max-w-md md:mx-auto mb-12">
-                        <SurveyForm2 />
+                        <StepperContentSurvey />
                     </div>
                 </div>
             </div>
