@@ -11,9 +11,6 @@ export const SurveyPage = () => {
                 </div>
             </Header>
             <StepperNumber />
-            {/* <section id="form_survey" className="px-4 mt-6">
-                <SurveyForm1 />
-            </section> */}
             <Footer />
         </>
     )

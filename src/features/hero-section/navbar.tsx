@@ -22,7 +22,7 @@ export const Navbar = () => {
                         'flex items-center gap-3 md:gap-6 lg:gap-10 md:font-semibold transition-all duration-500 md:static md:mt-0 text-black_line',
                         menu
                             ? 'fixed bg-white md:bg-transparent inset-0 md:inset-none flex-col md:flex-row gap-8 justify-center items-center z-50 opacity-100 mt-0'
-                            : 'absolute inset-0 flex-col md:flex-row gap-8 justify-center items-center bg-white md:bg-transparent z-50 -mt-96 md:mt-0 opacity-0 md:opacity-100'
+                            : 'absolute left-0 right-0 top-0 flex-col md:flex-row gap-8 justify-center items-center bg-white md:bg-transparent z-50 -mt-96 md:mt-0 opacity-0 md:opacity-100'
                     )}
                 >
                     <Link
