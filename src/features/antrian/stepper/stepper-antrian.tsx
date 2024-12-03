@@ -6,18 +6,17 @@ interface SteppersDataProps {
     name: string
     deskripsi: string
 }
-const StepperSurvey = () => {
+const StepperAntrian = () => {
     const { currentStep, nextStep, prevStep } = useStepperStore()
 
     const steps_data: SteppersDataProps[] = [
-        { name: 'Informasi Responden', deskripsi: 'Step 1' },
-        { name: 'Pertanyaan Kusioner', deskripsi: 'Step 1' },
-        { name: 'Saran', deskripsi: 'Step 1' },
+        { name: 'Informasi Pribadi', deskripsi: 'Step 1' },
+        { name: 'Pilih Tanggal Waktu', deskripsi: 'Step 2' },
     ] // Define your steps here
 
     return (
         <div>
-            <div className="flex gap-0 lg:max-w-2xl mx-auto lg:justify-center lg:items-center">
+            <div className="flex gap-0 lg:max-w-lg mx-auto lg:justify-center lg:items-center">
                 {steps_data.map((item, index) => (
                     <div className="flex-1 flex flex-col lg:flex-row items-center lg:justify-center lg:flex-auto gap-0 text-center relative">
                         {index == 0 ? (
@@ -81,4 +80,4 @@ const StepperSurvey = () => {
     )
 }
 
-export default StepperSurvey
+export default StepperAntrian

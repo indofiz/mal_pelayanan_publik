@@ -4,11 +4,13 @@ const TitleHeader = ({
     title,
     subTitle,
     isCenter = false,
+    classNameSub,
 }: {
     title: string
     subTitle?: string
     isHidden?: boolean
     isCenter?: boolean
+    classNameSub?: string
 }) => {
     return (
         <div
@@ -28,7 +30,8 @@ const TitleHeader = ({
             <div
                 className={cn(
                     'text-justify text-sm md:text-lg leading-6 lg:leading-loose',
-                    isCenter ? 'lg:text-center' : ' lg:text-left'
+                    isCenter ? 'lg:text-center' : ' lg:text-left',
+                    classNameSub ?? ''
                 )}
             >
                 {subTitle}
