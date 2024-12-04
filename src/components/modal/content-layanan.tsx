@@ -3,9 +3,9 @@ import { CardModal } from '@/features/list-instansi-pelayanan/card-modal'
 
 const ContentLayanan = () => {
     return (
-        <div className="px-4 max-h-[500px] md:max-h-fit overflow-y-scroll md:overflow-y-visible">
-            <div className="flex flex-col md:flex-row gap-7 md:items-center">
-                <div>
+        <div className="px-4 max-h-[800px] md:max-h-fit overflow-y-scroll md:overflow-y-visible">
+            <div className="flex flex-row items-center md:flex-row gap-7 md:px-0 mt-8 md:mt-0">
+                <div className="w-40 md:w-auto">
                     <img src="example.png" className="w-16 md:w-20" alt="" />
                 </div>
                 <div className="md:max-w-md flex flex-col gap-2">
@@ -20,7 +20,7 @@ const ContentLayanan = () => {
             </div>
             <div className="mt-8">
                 <h3 className="font-semibold text-xl mb-3">Informasi</h3>
-                <div className="flex gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-3">
                     <CardModal
                         desc="Jumlah Layanan"
                         img="jumlah-layanan.png"
@@ -43,8 +43,10 @@ const ContentLayanan = () => {
                     />
                 </div>
             </div>
-            <div className="mt-8">
-                <h3 className="font-semibold text-xl mb-6">Daftar Layanan</h3>
+            <div className="mt-12 md:mt-8">
+                <h3 className="font-semibold text-xl mb-3 md:mb-6">
+                    Daftar Layanan
+                </h3>
                 <div>
                     <CardLayananModal />
                     <CardLayananModal />

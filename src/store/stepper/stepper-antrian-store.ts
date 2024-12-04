@@ -16,5 +16,5 @@ export const useStepperAntrianStore = create<StepperAntrianState>((set) => ({
     nextStep: () => set((state) => ({ currentStep: state.currentStep + 1 })),
     prevStep: () => set((state) => ({ currentStep: state.currentStep - 1 })),
     updateFormData: (value) =>
-        set((state) => ({ ...state.formData, ...value })),
+        set((state) => ({ formData: { ...state.formData, ...value } })),
 }))

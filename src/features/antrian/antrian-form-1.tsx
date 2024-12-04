@@ -33,30 +33,64 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from '@/components/ui/popover'
-import { Check, ChevronsUpDown } from 'lucide-react'
+import { Check, ChevronsUpDown, Square, SquareCheck } from 'lucide-react'
 import { usePendidikanQuery } from '@/common/query/query-pendidikan'
 import { usePekerjaanQuery } from '@/common/query/query-pekerjaan'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { useStepperAntrianStore } from '@/store/stepper/stepper-antrian-store'
+import { kelaminData, statusKawinData } from '@/common/data/kelamin'
+import { getObjectLength } from '@/lib/objectLength'
 
 const formSchema = z.object({
-    nama_lengkap: z.string(),
-    usia: z.string(),
-    jenis_kelamin: z.string(),
-    status_kawin: z.string(),
-    pendidikan: z.string(),
-    pekerjaan: z.string(),
+    nama_lengkap: z.string().min(1, {
+        message: 'Nama Lengkap Harus Diisi.',
+    }),
+    usia: z.string().min(1, {
+        message: 'Usia Harus Diisi.',
+    }),
+    jenis_kelamin: z.string().min(1, {
+        message: 'Jenis Kelamin Harus Diisi.',
+    }),
+    status_kawin: z.string().min(1, {
+        message: 'Status Kawin Harus Diisi.',
+    }),
+    pendidikan: z.string().min(1, {
+        message: 'Pendidikan Harus Diisi.',
+    }),
+    pekerjaan: z.string().min(1, {
+        message: 'Pekerjaan Harus Diisi.',
+    }),
+    jenis_permohonan: z.string().min(1, {
+        message: 'Jenis Permohonan Harus Diisi.',
+    }),
 })
 
 export default function AntrianForm1() {
     const { data: pendidikanData } = usePendidikanQuery()
     const { data: pekerjaanData } = usePekerjaanQuery()
+    const { nextStep, updateFormData, formData } = useStepperAntrianStore()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
+        defaultValues:
+            getObjectLength(formData) > 0
+                ? { ...formData }
+                : {
+                      nama_lengkap: '',
+                      usia: '',
+                      jenis_kelamin: '',
+                      status_kawin: '',
+                      pendidikan: '',
+                      pekerjaan: '',
+                      jenis_permohonan: '',
+                  },
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         try {
             console.log(values)
+            updateFormData(values)
+            nextStep()
             toast(
                 <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
                     <code className="text-white">
@@ -78,6 +112,68 @@ export default function AntrianForm1() {
             >
                 <FormField
                     control={form.control}
+                    name="jenis_permohonan"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Permohonan :</FormLabel>
+                            <FormControl>
+                                <RadioGroup
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                    className="flex gap-2"
+                                >
+                                    <FormItem className="flex">
+                                        <div
+                                            className={cn(
+                                                'items-center border border-border bg-white rounded-md justify-center px-2 py-3 gap-4 relative',
+                                                field.value == 'sendiri'
+                                                    ? 'bg-green_primary text-white border-emerald-700'
+                                                    : ''
+                                            )}
+                                        >
+                                            <FormControl className="hidden">
+                                                <RadioGroupItem value="sendiri" />
+                                            </FormControl>
+                                            <FormLabel className="font-normal flex items-center gap-2 after:content-[''] after:inset-0 after:absolute">
+                                                {field.value == 'sendiri' ? (
+                                                    <SquareCheck size={14} />
+                                                ) : (
+                                                    <Square size={14} />
+                                                )}
+                                                Mengurus Sendiri
+                                            </FormLabel>
+                                        </div>
+                                    </FormItem>
+                                    <FormItem className="flex">
+                                        <div
+                                            className={cn(
+                                                'items-center border border-border bg-white rounded-md justify-center px-2 py-3 gap-4 relative',
+                                                field.value == 'dikuasakan'
+                                                    ? 'bg-green_primary text-white border-emerald-700'
+                                                    : ''
+                                            )}
+                                        >
+                                            <FormControl className="hidden">
+                                                <RadioGroupItem value="dikuasakan" />
+                                            </FormControl>
+                                            <FormLabel className="font-normal flex items-center gap-2 after:content-[''] after:inset-0 after:absolute">
+                                                {field.value == 'dikuasakan' ? (
+                                                    <SquareCheck size={14} />
+                                                ) : (
+                                                    <Square size={14} />
+                                                )}
+                                                Dikuasakan
+                                            </FormLabel>
+                                        </div>
+                                    </FormItem>
+                                </RadioGroup>
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
                     name="nama_lengkap"
                     render={({ field }) => (
                         <FormItem>
@@ -85,7 +181,7 @@ export default function AntrianForm1() {
                             <FormControl>
                                 <Input
                                     placeholder="Masukan nama lengkap"
-                                    type=""
+                                    type="text"
                                     {...field}
                                 />
                             </FormControl>
@@ -130,15 +226,14 @@ export default function AntrianForm1() {
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                    <SelectItem value="m@example.com">
-                                        m@example.com
-                                    </SelectItem>
-                                    <SelectItem value="m@google.com">
-                                        m@google.com
-                                    </SelectItem>
-                                    <SelectItem value="m@support.com">
-                                        m@support.com
-                                    </SelectItem>
+                                    {kelaminData.map((item) => (
+                                        <SelectItem
+                                            key={item.value}
+                                            value={item.value}
+                                        >
+                                            {item.label}
+                                        </SelectItem>
+                                    ))}
                                 </SelectContent>
                             </Select>
 
@@ -159,19 +254,18 @@ export default function AntrianForm1() {
                             >
                                 <FormControl>
                                     <SelectTrigger>
-                                        <SelectValue placeholder="" />
+                                        <SelectValue placeholder="Pilih Status Perkawinan" />
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                    <SelectItem value="m@example.com">
-                                        m@example.com
-                                    </SelectItem>
-                                    <SelectItem value="m@google.com">
-                                        m@google.com
-                                    </SelectItem>
-                                    <SelectItem value="m@support.com">
-                                        m@support.com
-                                    </SelectItem>
+                                    {statusKawinData.map((item) => (
+                                        <SelectItem
+                                            key={item.value}
+                                            value={item.value}
+                                        >
+                                            {item.label}
+                                        </SelectItem>
+                                    ))}
                                 </SelectContent>
                             </Select>
 
@@ -335,7 +429,15 @@ export default function AntrianForm1() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Submit</Button>
+
+                <div className="flex justify-end gap-2">
+                    <Button type="reset" variant={'outline'} size={'lg'}>
+                        Reset
+                    </Button>
+                    <Button type="submit" size={'lg'}>
+                        Selanjutnya
+                    </Button>
+                </div>
             </form>
         </Form>
     )

@@ -7,6 +7,7 @@ import { ProfilePage } from './pages/profilpage'
 import { SurveyPage } from './pages/surveypage'
 import { Homepage } from './pages/homepage'
 import { AntrianPage } from './pages/antrianpage'
+import { Toaster } from 'sonner'
 
 const router = createBrowserRouter([
     {
@@ -22,9 +23,11 @@ const router = createBrowserRouter([
 ])
 
 const queryClient = new QueryClient()
+
 function App() {
     return (
         <QueryClientProvider client={queryClient}>
+            <Toaster />
             <RouterProvider router={router} />
         </QueryClientProvider>
     )

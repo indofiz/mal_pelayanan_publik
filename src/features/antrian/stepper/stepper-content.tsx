@@ -1,7 +1,7 @@
-import { useStepperStore } from '@/store/stepper/stepper-store'
 import AntrianForm1 from '../antrian-form-1'
+import { useStepperAntrianStore } from '@/store/stepper/stepper-antrian-store'
 const StepperContentAntrian = () => {
-    const { currentStep } = useStepperStore()
+    const { currentStep } = useStepperAntrianStore()
 
     const renderStep = () => {
         switch (currentStep) {
