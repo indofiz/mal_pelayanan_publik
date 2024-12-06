@@ -1,3 +1,4 @@
+import { IQuesioner } from '@/common/query/query-event'
 import {
     FormControl,
     FormItem,
@@ -9,48 +10,40 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 interface IRadioPertanyaan {
     onChange: (value: string) => void
     value: string
+    pertanyaan: IQuesioner
 }
 export const RadioPertanyaan: React.FC<IRadioPertanyaan> = ({
     onChange,
     value,
+    pertanyaan,
 }) => {
+    const title = pertanyaan.question.split('.')
+
     return (
         <FormItem className="border border-border_card rounded-xl p-4 text-gray-800">
             <FormLabel className="font-bold text-lg text-black_line">
-                Notify me about...
+                Pertanyaan #{title[0] ?? '-'}
             </FormLabel>
-            <div className="text-sm mt-2">
-                Bagaimana penilaian anda mengenai kesesuaian persyaratan
-                pelayanan yang harus dipenuhi jenis pelayanan yang anda ajukan?
-            </div>
+            <div className="text-sm mt-2">{title[1] ?? ''}</div>
             <FormControl>
                 <RadioGroup
                     onValueChange={onChange}
                     defaultValue={value}
                     className="flex flex-col space-y-1 pt-2"
                 >
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                            <RadioGroupItem value="all" />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                            All new messages
-                        </FormLabel>
-                    </FormItem>
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                            <RadioGroupItem value="mentions" />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                            Direct messages and mentions
-                        </FormLabel>
-                    </FormItem>
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                            <RadioGroupItem value="none" />
-                        </FormControl>
-                        <FormLabel className="font-normal">Nothing</FormLabel>
-                    </FormItem>
+                    {pertanyaan.quesionerAnswer.map((option) => (
+                        <FormItem
+                            className="flex items-center space-x-3 space-y-0"
+                            key={option.id}
+                        >
+                            <FormControl>
+                                <RadioGroupItem value={option.value} />
+                            </FormControl>
+                            <FormLabel className="font-normal">
+                                {option.sign}
+                            </FormLabel>
+                        </FormItem>
+                    ))}
                 </RadioGroup>
             </FormControl>
             <FormMessage />

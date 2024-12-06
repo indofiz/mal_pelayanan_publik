@@ -6,33 +6,50 @@ import { Form, FormField } from '@/components/ui/form'
 import { RadioPertanyaan } from './radio-pertanyaan-card'
 import { toast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
-
-const FormSchema = z.object({
-    type: z.enum(['all', 'mentions', 'none'], {
-        required_error: 'Pertanyaan Ini Wajib Diisi.',
-    }),
-    type2: z.enum(['all', 'mentions', 'none'], {
-        required_error: 'Pertanyaan Ini Wajib Diisi.',
-    }),
-})
+import { useEventQuery } from '@/common/query/query-event'
+import {
+    createDynamicSchemaQuisioner,
+    createDynamicSchemaValue,
+} from '@/utils/dynamic-schema'
+import { ArrowLeft, Save } from 'lucide-react'
+import { useStepperStore } from '@/store/stepper/stepper-store'
 
 export const SurveyForm2 = () => {
-    const form = useForm<z.infer<typeof FormSchema>>({
-        resolver: zodResolver(FormSchema),
+    const { data: dataQuisioner, isLoading } = useEventQuery()
+    const { nextStep, prevStep, updateFormData } = useStepperStore()
+
+    const dynamicSchema = createDynamicSchemaQuisioner({
+        data: dataQuisioner?.data?.quesioners,
+        type: 'CHOICE',
     })
 
-    function onSubmit(data: z.infer<typeof FormSchema>) {
+    const dynamicValue = createDynamicSchemaValue({
+        data: dataQuisioner?.data?.quesioners,
+        type: 'CHOICE',
+    })
+
+    const form = useForm<z.infer<typeof dynamicSchema>>({
+        resolver: zodResolver(dynamicSchema),
+        defaultValues: dynamicValue,
+    })
+
+    function onSubmit(datas: z.infer<typeof dynamicSchema>) {
+        updateFormData(datas)
+        nextStep()
         toast({
             title: 'You submitted the following values:',
             description: (
                 <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
                     <code className="text-white">
-                        {JSON.stringify(data, null, 2)}
+                        {JSON.stringify(datas, null, 2)}
                     </code>
                 </pre>
             ),
         })
     }
+
+    if (isLoading) return <div>Loading...</div>
+
     return (
         <div className="flex flex-col gap-4">
             <Form {...form}>
@@ -40,27 +57,35 @@ export const SurveyForm2 = () => {
                     onSubmit={form.handleSubmit(onSubmit)}
                     className="space-y-6"
                 >
-                    <FormField
-                        control={form.control}
-                        name="type"
-                        render={({ field }) => (
-                            <RadioPertanyaan
-                                onChange={field.onChange}
-                                value={field.value}
+                    {dataQuisioner?.data?.quesioners?.map((quisioner) =>
+                        quisioner.quesionerType === 'CHOICE' ? (
+                            <FormField
+                                key={quisioner.id}
+                                control={form.control}
+                                name={quisioner.id}
+                                render={({ field }) => (
+                                    <RadioPertanyaan
+                                        onChange={field.onChange}
+                                        value={field.value}
+                                        pertanyaan={quisioner}
+                                    />
+                                )}
                             />
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="type2"
-                        render={({ field }) => (
-                            <RadioPertanyaan
-                                onChange={field.onChange}
-                                value={field.value}
-                            />
-                        )}
-                    />
-                    <Button type="submit">Submit</Button>
+                        ) : null
+                    )}
+                    <div className="flex justify-end gap-2 mt-12">
+                        <Button
+                            type="button"
+                            onClick={prevStep}
+                            variant="outline"
+                            size={'lg'}
+                        >
+                            <ArrowLeft /> Kembali
+                        </Button>
+                        <Button type="submit" size={'lg'}>
+                            <Save /> Selanjutnya
+                        </Button>
+                    </div>
                 </form>
             </Form>
         </div>
