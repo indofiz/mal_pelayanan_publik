@@ -1,5 +1,6 @@
 import AntrianForm1 from '../antrian-form-1'
 import { useStepperAntrianStore } from '@/store/stepper/stepper-antrian-store'
+import { AntrianForm2 } from '../antrian-form-2'
 const StepperContentAntrian = () => {
     const { currentStep } = useStepperAntrianStore()
 
@@ -8,7 +9,7 @@ const StepperContentAntrian = () => {
             case 0:
                 return <AntrianForm1 />
             case 1:
-                return <>bb</>
+                return <AntrianForm2 />
             default:
                 return null
         }
