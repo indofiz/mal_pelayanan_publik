@@ -13,10 +13,12 @@ import {
 } from '@/utils/dynamic-schema'
 import { ArrowLeft, Save } from 'lucide-react'
 import { useStepperStore } from '@/store/stepper/stepper-store'
+import { getObjectLength } from '@/lib/objectLength'
 
 export const SurveyForm2 = () => {
     const { data: dataQuisioner, isLoading } = useEventQuery()
-    const { nextStep, prevStep, updateFormData } = useStepperStore()
+    const { nextStep, prevStep, updatePertanyaanData, pertanyaanData } =
+        useStepperStore()
 
     const dynamicSchema = createDynamicSchemaQuisioner({
         data: dataQuisioner?.data?.quesioners,
@@ -30,11 +32,12 @@ export const SurveyForm2 = () => {
 
     const form = useForm<z.infer<typeof dynamicSchema>>({
         resolver: zodResolver(dynamicSchema),
-        defaultValues: dynamicValue,
+        defaultValues:
+            getObjectLength(pertanyaanData) > 0 ? pertanyaanData : dynamicValue,
     })
 
     function onSubmit(datas: z.infer<typeof dynamicSchema>) {
-        updateFormData(datas)
+        updatePertanyaanData(datas)
         nextStep()
         toast({
             title: 'You submitted the following values:',

@@ -1,7 +1,6 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { CalendarIcon } from '@radix-ui/react-icons'
 import { format } from 'date-fns'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -25,6 +24,7 @@ import {
 } from '@/components/ui/popover'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import { toast } from 'sonner'
+import { CalendarIcon } from 'lucide-react'
 
 const FormSchema = z.object({
     time: z.date({

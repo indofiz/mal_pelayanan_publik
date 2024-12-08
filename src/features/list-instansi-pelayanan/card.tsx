@@ -1,4 +1,7 @@
+import { useLayananModalStore } from '@/store/modal/modal-detail-layanan'
+
 const CardPelayanan = () => {
+    const { setOpen } = useLayananModalStore()
     return (
         <div className="border border-border_card bg-white rounded-2xl p-4 md:p-8 relative z-0 overflow-clip">
             <div className="size-36 bg-gradient-to-br via-green_thin from-green_primary opacity-50 rotate-90 to-white rounded-full absolute -top-12 -right-10 -z-[1]"></div>
@@ -14,7 +17,10 @@ const CardPelayanan = () => {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
                 condimentum massa purus
             </div>
-            <button className="bg-white border border-green_primary rounded-lg flex w-full justify-center py-3 px-4 font-semibold text-green_primary hover:bg-green_primary hover:text-white transition-all duration-100 mt-3">
+            <button
+                onClick={() => setOpen(true)}
+                className="bg-white border border-green_primary rounded-lg flex w-full justify-center py-3 px-4 font-semibold text-green_primary hover:bg-green_primary hover:text-white transition-all duration-100 mt-3"
+            >
                 Lihat Layanan
             </button>
         </div>

@@ -7,7 +7,7 @@ interface SteppersDataProps {
     deskripsi: string
 }
 const StepperAntrian = () => {
-    const { currentStep, nextStep, prevStep } = useStepperAntrianStore()
+    const { currentStep } = useStepperAntrianStore()
 
     const steps_data: SteppersDataProps[] = [
         { name: 'Informasi Pribadi', deskripsi: 'Step 1' },
@@ -64,10 +64,9 @@ const StepperAntrian = () => {
                             {item.name}
                         </div>
                     </div>
-                    // {index === currentStep ? 'bold' : 'normal'}
                 ))}
             </div>
-            <div>
+            {/* <div>
                 <h2>{steps_data[currentStep].name}</h2>
                 <button onClick={prevStep} disabled={currentStep === 0}>
                     Previous
@@ -78,7 +77,7 @@ const StepperAntrian = () => {
                 >
                     Next
                 </button>
-            </div>
+            </div> */}
         </div>
     )
 }

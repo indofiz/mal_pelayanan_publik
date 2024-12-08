@@ -17,7 +17,14 @@ const router = createBrowserRouter([
             { path: '/', element: <Homepage /> },
             { path: 'profil', element: <ProfilePage /> },
             { path: 'survey', element: <SurveyPage /> },
-            { path: 'antrian', element: <AntrianPage /> },
+            {
+                path: 'antrian',
+                element: <AntrianPage />,
+            },
+            {
+                path: 'antrian/:layanan',
+                element: <AntrianPage />,
+            },
         ],
     },
 ])
@@ -27,7 +34,7 @@ const queryClient = new QueryClient()
 function App() {
     return (
         <QueryClientProvider client={queryClient}>
-            <Toaster />
+            <Toaster position="top-center" richColors />
             <RouterProvider router={router} />
         </QueryClientProvider>
     )

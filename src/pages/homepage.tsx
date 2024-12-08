@@ -5,10 +5,12 @@ import { HeroHomepage } from '../features/hero-section/hero-homepage'
 import { SearchHomepage } from '../features/hero-section/search-homepage'
 import ListInstansiPelayanan from '../features/list-instansi-pelayanan'
 import PelayananKami from '../features/pelayanan-kami'
+import { ModalPencarian } from '@/components/modal/modal-pencarian'
 
 export const Homepage = () => {
     return (
         <>
+            <ModalPencarian />
             <ModalLayanan />
             <Header>
                 <HeroHomepage />

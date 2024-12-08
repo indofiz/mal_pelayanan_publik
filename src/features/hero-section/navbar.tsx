@@ -12,9 +12,11 @@ export const Navbar = () => {
     return (
         <div className="container mx-auto">
             <nav className="flex justify-between items-center px-4 py-3 md:py-8">
-                <Link to="/" className="flex items-center gap-2">
-                    <img src={logoMPP} className="w-16 md:w-24" alt="" />
-                    <img src={logoTitle} className="w-16 md:w-24" alt="" />
+                <Link to={'/'}>
+                    <div className="flex items-center gap-2">
+                        <img src={logoMPP} className="w-16 md:w-24" alt="" />
+                        <img src={logoTitle} className="w-16 md:w-24" alt="" />
+                    </div>
                 </Link>
 
                 <div

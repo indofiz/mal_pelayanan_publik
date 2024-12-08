@@ -7,7 +7,7 @@ const HeroAntrian = () => {
                 <TitleHeader
                     isCenter
                     title="Antrian Online"
-                    subTitle="Dinas Dukcapil Layanan Pembuatan KTP"
+                    subTitle={'Lakukan antrian online di Pangkalpinang'}
                     classNameSub="-mt-3 md:-mt-4"
                 />
             </div>

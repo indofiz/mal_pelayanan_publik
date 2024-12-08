@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { Button } from '@/components/ui/button'
 import {
@@ -18,9 +17,10 @@ import {
     DrawerTitle,
 } from '@/components/ui/drawer'
 import ContentLayanan from './content-layanan'
+import { useLayananModalStore } from '@/store/modal/modal-detail-layanan'
 
 export function ModalLayanan() {
-    const [open, setOpen] = React.useState(true)
+    const { open, setOpen } = useLayananModalStore()
     const isDesktop = useMediaQuery({ query: '(min-width: 768px)' })
 
     if (isDesktop) {

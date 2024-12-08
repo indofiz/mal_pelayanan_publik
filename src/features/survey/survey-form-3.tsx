@@ -1,75 +1,158 @@
-import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-import { Button } from '@/components/ui/button'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
 import {
     Form,
     FormControl,
+    FormDescription,
     FormField,
     FormItem,
     FormLabel,
     FormMessage,
 } from '@/components/ui/form'
+
+import { Button } from '@/components/ui/button'
+import { useEventQuery } from '@/common/query/query-event'
+import {
+    createDynamicSchemaQuisioner,
+    createDynamicSchemaValue,
+} from '@/utils/dynamic-schema'
+import { ArrowLeft, Save } from 'lucide-react'
+import { useStepperStore } from '@/store/stepper/stepper-store'
 import { Textarea } from '@/components/ui/textarea'
-import { toast } from '@/hooks/use-toast'
+import { useRespondenMutation } from '@/common/query/query-responden'
+import { toast } from 'sonner'
+import { useSurveyMutation } from '@/common/query/query-survey'
+import { useNavigate } from 'react-router-dom'
+import { getObjectLength } from '@/lib/objectLength'
 
-const formSchema = z.object({
-    saran: z.string(),
-})
+export const SurveyForm3 = () => {
+    const { data: dataQuisioner, isLoading } = useEventQuery()
+    const {
+        prevStep,
+        updatePertanyaanData,
+        pertanyaanData,
+        respondenData,
+        reset,
+    } = useStepperStore()
+    const respondenMutation = useRespondenMutation()
+    const surveyMutation = useSurveyMutation()
+    const navigate = useNavigate()
 
-export default function SurveyForm3() {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const dynamicSchema = createDynamicSchemaQuisioner({
+        data: dataQuisioner?.data?.quesioners,
+        type: 'ESSAY',
+        isRequired: false,
     })
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    const dynamicValue = createDynamicSchemaValue({
+        data: dataQuisioner?.data?.quesioners,
+        type: 'ESSAY',
+    })
+
+    const form = useForm<z.infer<typeof dynamicSchema>>({
+        resolver: zodResolver(dynamicSchema),
+        defaultValues:
+            getObjectLength(pertanyaanData) > 0 ? pertanyaanData : dynamicValue,
+    })
+
+    function onSubmit(datas: z.infer<typeof dynamicSchema>) {
+        updatePertanyaanData(datas)
+        const result = Object.entries({ ...pertanyaanData, ...datas }).map(
+            ([key, value]) => ({
+                questionerId: key,
+                answer: value,
+            })
+        )
+        const usia: number = respondenData.usia ? +respondenData.usia : 0
+
         try {
-            console.log(values)
-            toast(
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">
-                        {JSON.stringify(values, null, 2)}
-                    </code>
-                </pre>
+            respondenMutation.mutate(
+                { ...respondenData, usia: usia },
+                {
+                    onSuccess: (data) => {
+                        surveyMutation.mutate(
+                            { answerList: result, respondenId: data.data },
+                            {
+                                onSuccess: () => {
+                                    toast.success(
+                                        `Terima Kasih, Survey berhasil diajukan`
+                                    )
+                                    reset()
+                                    setTimeout(() => {
+                                        navigate('/', { replace: true })
+                                    }, 3000)
+                                },
+                                onError: (error) => {
+                                    toast.error(
+                                        `Error survey: ${error.message}`
+                                    )
+                                },
+                            }
+                        )
+                    },
+                    onError: (error) => {
+                        toast.error(`Error pengajuan: ${error.message}`)
+                    },
+                }
             )
         } catch (error) {
-            console.error('Form submission error', error)
-            toast(
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">
-                        {JSON.stringify(error, null, 2)}
-                    </code>
-                </pre>
-            )
+            toast.error(` `)
         }
     }
 
-    return (
-        <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-4 max-w-3xl mx-auto py-4"
-            >
-                <FormField
-                    control={form.control}
-                    name="saran"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Saran Anda :</FormLabel>
-                            <FormControl>
-                                <Textarea
-                                    placeholder="Masukan saran anda"
-                                    rows={7}
-                                    {...field}
-                                />
-                            </FormControl>
+    if (isLoading) return <div>Loading...</div>
 
-                            <FormMessage />
-                        </FormItem>
+    return (
+        <div className="flex flex-col gap-4">
+            <Form {...form}>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6"
+                >
+                    {dataQuisioner?.data?.quesioners?.map((quisioner) =>
+                        quisioner.quesionerType === 'ESSAY' ? (
+                            <FormField
+                                key={quisioner.id}
+                                control={form.control}
+                                name={quisioner.id}
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>
+                                            {quisioner.question}
+                                        </FormLabel>
+                                        <FormControl>
+                                            <Textarea
+                                                placeholder="Masukan kritik dan saran anda."
+                                                rows={7}
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormDescription>
+                                            Kritik dan saran tidak wajib diisi.
+                                        </FormDescription>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        ) : null
                     )}
-                />
-                <Button type="submit">Submit</Button>
-            </form>
-        </Form>
+                    <div className="flex justify-end gap-2 mt-12">
+                        <Button
+                            type="button"
+                            onClick={prevStep}
+                            variant="outline"
+                            size={'lg'}
+                        >
+                            <ArrowLeft /> Kembali
+                        </Button>
+                        <Button type="submit" size={'lg'}>
+                            <Save /> Submit Survey
+                        </Button>
+                    </div>
+                </form>
+            </Form>
+        </div>
     )
 }

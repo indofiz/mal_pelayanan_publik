@@ -1,11 +1,6 @@
-import { Calendar as CalendarIcon } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { Check } from 'lucide-react'
+
 import { Button } from '@/components/ui/button'
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from '@/components/ui/popover'
 import {
     Form,
     FormControl,
@@ -18,93 +13,143 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TimePickerDemo } from '@/components/extentions/date-time-picker-popup'
 import { Calendar } from '@/components/ui/calendar'
-import { toast } from '@/hooks/use-toast'
 import { useStepperAntrianStore } from '@/store/stepper/stepper-antrian-store'
-import { format, startOfToday } from 'date-fns'
+import { format, getHours, startOfToday } from 'date-fns'
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card'
+import { jsonToFormData } from '@/lib/jsonToFormData'
+import { useAntrianmMutation } from '@/common/query/query-antrian'
+import { toast } from 'sonner'
+import { useNavigate } from 'react-router-dom'
 
 const formSchema = z.object({
     tanggal: z.date(),
-    waktu: z.date(),
+    jam: z.date(),
 })
 
 type FormSchemaType = z.infer<typeof formSchema>
 
 export function AntrianForm2() {
+    const navigate = useNavigate()
     const form = useForm<FormSchemaType>({
         resolver: zodResolver(formSchema),
     })
 
-    const { formData } = useStepperAntrianStore()
+    const { formData, prevStep, reset } = useStepperAntrianStore()
+    const mutationPost = useAntrianmMutation()
 
     function onSubmit(data: FormSchemaType) {
-        console.log({
+        const formDatas = jsonToFormData({
             ...formData,
             ...data,
             tanggal: format(data.tanggal, 'yyyy-MM-dd'),
-            waktu: format(data.waktu, 'HH:mm'),
+            jam: format(data.jam, 'HH:mm'),
         })
-        toast({
-            title: 'You submitted the following values:',
-            description: (
-                <pre>
-                    <code>{JSON.stringify(data, null, 2)}</code>
-                </pre>
-            ),
-        })
+
+        try {
+            if (data && getHours(data.jam) >= 8 && getHours(data.jam) <= 16) {
+                mutationPost.mutate(formDatas, {
+                    onSuccess: (data) => {
+                        toast.success(
+                            `Antrian ${data.data.nama_lengkap} berhasil diajukan pada tanggal ${data.data.tanggal} jam ${data.data.jam}`
+                        )
+                        reset()
+                        setTimeout(() => {
+                            navigate('/', { replace: true })
+                        }, 3000)
+                    },
+                    onError: (error) => {
+                        toast.error(`Error pengajuan: ${error.message}`)
+                    },
+                })
+            } else {
+                toast.error('Pilih jam antara 08:00 - 16:00')
+            }
+        } catch (error) {
+            toast.error('Failed to submit the form. Please try again.')
+        }
     }
 
     return (
-        <Form {...form}>
-            <form
-                className="space-y-2 max-w-sm mx-auto"
-                onSubmit={form.handleSubmit(onSubmit)}
-            >
-                <FormField
-                    control={form.control}
-                    name="tanggal"
-                    render={({ field }) => (
-                        <FormItem className="flex flex-col">
-                            <FormLabel className="text-left">
-                                Pilih Tanggal :
-                            </FormLabel>
-                            <FormControl>
-                                <div className="flex justify-center">
-                                    <Calendar
-                                        mode="single"
-                                        selected={field.value}
-                                        onSelect={field.onChange}
-                                        disabled={(date) =>
-                                            date < startOfToday() ||
-                                            date >= new Date('3000-01-01')
-                                        }
-                                        initialFocus
-                                    />
-                                </div>
-                            </FormControl>
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="waktu"
-                    render={({ field }) => (
-                        <FormItem className="flex flex-col">
-                            <FormLabel className="text-left mb-2">
-                                Pilih Jam dan Menit :
-                            </FormLabel>
-                            <FormControl>
-                                <div className="p-3 bg-muted rounded-lg">
-                                    <TimePickerDemo
-                                        setDate={field.onChange}
-                                        date={field.value}
-                                    />
-                                </div>
-                            </FormControl>
-                        </FormItem>
-                    )}
-                />
-                <Button type="submit">Submit</Button>
-            </form>
-        </Form>
+        <Card className="">
+            <CardHeader>
+                <CardTitle>Tanggal dan Waktu</CardTitle>
+                <CardDescription>
+                    Pilih tanggal dan waktu anda ingin menggunakan layanan MPP.
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Form {...form}>
+                    <form
+                        className="space-y-2 max-w-sm mx-auto"
+                        onSubmit={form.handleSubmit(onSubmit)}
+                    >
+                        <FormField
+                            control={form.control}
+                            name="tanggal"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-col">
+                                    <FormLabel className="text-left">
+                                        Pilih Tanggal :
+                                    </FormLabel>
+                                    <FormControl>
+                                        <div className="flex justify-center">
+                                            <Calendar
+                                                mode="single"
+                                                selected={field.value}
+                                                onSelect={field.onChange}
+                                                disabled={(date) =>
+                                                    date < startOfToday() ||
+                                                    date >=
+                                                        new Date('3000-01-01')
+                                                }
+                                                initialFocus
+                                            />
+                                        </div>
+                                    </FormControl>
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="jam"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-col">
+                                    <FormLabel className="text-left mb-2">
+                                        Pilih Jam dan Menit :
+                                    </FormLabel>
+                                    <FormControl>
+                                        <div className="p-3 bg-muted rounded-lg">
+                                            <TimePickerDemo
+                                                setDate={field.onChange}
+                                                date={field.value}
+                                            />
+                                        </div>
+                                    </FormControl>
+                                </FormItem>
+                            )}
+                        />
+                        <div className="flex justify-end gap-2 flex-col md:flex-row pt-4">
+                            <Button type="submit" size={'lg'}>
+                                <Check /> Ajukan Antrian
+                            </Button>
+                            <Button
+                                type="button"
+                                variant={'outline'}
+                                size={'lg'}
+                                onClick={prevStep}
+                            >
+                                Kembali
+                            </Button>
+                        </div>
+                    </form>
+                </Form>
+            </CardContent>
+        </Card>
     )
 }

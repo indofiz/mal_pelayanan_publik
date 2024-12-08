@@ -1,7 +1,7 @@
 import { useStepperStore } from '@/store/stepper/stepper-store'
 import SurveyForm1 from '../survey-form-1'
 import { SurveyForm2 } from '../survey-form-2'
-import SurveyForm3 from '../survey-form-3'
+import { SurveyForm3 } from '../survey-form-3'
 
 const StepperContentSurvey = () => {
     const { currentStep } = useStepperStore()

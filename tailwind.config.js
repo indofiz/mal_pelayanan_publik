@@ -65,8 +65,8 @@ export default {
                 green_thin: '#F1FFFD',
             },
             backgroundImage: {
-                'hero-img': "url('image-hero.png')",
-                'gradient-fot': "url('gradient-bottom.png')",
+                'hero-img': "url('/image-hero.png')",
+                'gradient-fot': "url('/gradient-bottom.png')",
             },
             boxShadow: {
                 searchShadow: '0px 16px 32px 2px rgba(8,22,54,0.06)',
