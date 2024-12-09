@@ -32,7 +32,7 @@ const SearchModalContent = () => {
         setKeyword(values.keyword)
     }
     return (
-        <div className="p-4 pt-0">
+        <div className="p-4 pt-0 md:pt-4">
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
@@ -45,7 +45,7 @@ const SearchModalContent = () => {
                             <FormItem className="flex-1">
                                 <FormControl>
                                     <Input
-                                        className="h-14 w-full"
+                                        className="h-14 w-full px-6"
                                         placeholder="Masukan nama layanan"
                                         {...field}
                                     />

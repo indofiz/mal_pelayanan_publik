@@ -7,7 +7,7 @@ interface SteppersDataProps {
     deskripsi: string
 }
 const StepperSurvey = () => {
-    const { currentStep, nextStep, prevStep } = useStepperStore()
+    const { currentStep } = useStepperStore()
 
     const steps_data: SteppersDataProps[] = [
         { name: 'Informasi Responden', deskripsi: 'Step 1' },
@@ -68,7 +68,7 @@ const StepperSurvey = () => {
                     // {index === currentStep ? 'bold' : 'normal'}
                 ))}
             </div>
-            <div>
+            {/* <div>
                 <h2>{steps_data[currentStep].name}</h2>
                 <button onClick={prevStep} disabled={currentStep === 0}>
                     Previous
@@ -79,7 +79,7 @@ const StepperSurvey = () => {
                 >
                     Next
                 </button>
-            </div>
+            </div> */}
         </div>
     )
 }

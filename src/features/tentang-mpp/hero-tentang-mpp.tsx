@@ -15,6 +15,8 @@ const HeroTentangSection = () => {
                         url="/video_test.mp4"
                         controls
                         muted
+                        loop
+                        playing
                         width="100%"
                         height="100%"
                     />

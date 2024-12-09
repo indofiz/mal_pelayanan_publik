@@ -28,14 +28,16 @@ export function ModalPencarian() {
     if (isDesktop) {
         return (
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogContent className="sm:max-w-[425px] md:max-w-5xl px-4">
-                    <DialogHeader>
+                <DialogContent className="sm:max-w-[425px] md:max-w-2xl pt-0 px-0 bg-gray-100 border-none overflow-clip">
+                    <DialogHeader className="px-0 md:px-4 pt-6 hidden">
                         <DialogTitle>Cari Layanan</DialogTitle>
                         <DialogDescription>
                             Masukan keyword pelayanan yang ingin anda cari.
                         </DialogDescription>
                     </DialogHeader>
-                    <SearchModalContent />
+                    <div className="bg-gray-200 py-1">
+                        <SearchModalContent />
+                    </div>
                     <ListLayananSearch />
                 </DialogContent>
             </Dialog>

@@ -1,9 +1,10 @@
 import { CardLayananModal } from '@/features/list-instansi-pelayanan/card-layanan-modal'
 import { CardModal } from '@/features/list-instansi-pelayanan/card-modal'
+import { ScrollArea } from '../ui/scroll-area'
 
 const ContentLayanan = () => {
     return (
-        <div className="px-4 max-h-[800px] md:max-h-fit overflow-y-scroll md:overflow-y-visible">
+        <ScrollArea className="px-4 h-[300px] px md:h-auto md:max-h-fit">
             <div className="flex flex-row items-center md:flex-row gap-7 md:px-0 mt-8 md:mt-0">
                 <div className="w-40 md:w-auto">
                     <img src="example.png" className="w-16 md:w-20" alt="" />
@@ -54,7 +55,7 @@ const ContentLayanan = () => {
                     <CardLayananModal />
                 </div>
             </div>
-        </div>
+        </ScrollArea>
     )
 }
 
