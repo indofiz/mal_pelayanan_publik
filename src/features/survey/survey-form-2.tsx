@@ -11,7 +11,7 @@ import {
     createDynamicSchemaQuisioner,
     createDynamicSchemaValue,
 } from '@/utils/dynamic-schema'
-import { ArrowLeft, Save } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Save } from 'lucide-react'
 import { useStepperStore } from '@/store/stepper/stepper-store'
 import { getObjectLength } from '@/lib/objectLength'
 
@@ -76,17 +76,23 @@ export const SurveyForm2 = () => {
                             />
                         ) : null
                     )}
-                    <div className="flex justify-end gap-2 mt-12">
+
+                    <div className="flex justify-end gap-2 flex-col md:flex-row">
                         <Button
-                            type="button"
-                            onClick={prevStep}
-                            variant="outline"
+                            type="submit"
+                            className="md:order-last md:flex-1"
                             size={'lg'}
                         >
-                            <ArrowLeft /> Kembali
+                            Selanjutnya <ArrowRight />
                         </Button>
-                        <Button type="submit" size={'lg'}>
-                            <Save /> Selanjutnya
+                        <Button
+                            onClick={prevStep}
+                            type="button"
+                            variant={'outline'}
+                            className="md:flex-1"
+                            size={'lg'}
+                        >
+                            Kembali
                         </Button>
                     </div>
                 </form>

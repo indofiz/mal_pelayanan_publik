@@ -1,6 +1,10 @@
+import { Link } from 'react-router-dom'
+import { isExternal } from 'util/types'
+
 interface ISubItem {
     url: string
     title: string
+    isExternal: boolean
 }
 
 interface IData {
@@ -11,25 +15,46 @@ const data: IData[] = [
     {
         title: 'Menu Kami',
         data: [
-            { url: 'https://', title: 'Satu Data' },
-            { url: 'https://', title: 'Portal Pangkalpinang' },
-            { url: 'https://', title: 'Website Pangkalpinang' },
+            { isExternal: false, url: '/', title: 'Beranda' },
+            {
+                isExternal: false,
+                url: '/profil',
+                title: 'Profil',
+            },
+            {
+                isExternal: false,
+                url: '/instansi',
+                title: 'Instansi',
+            },
+            {
+                isExternal: false,
+                url: '/petunjuk',
+                title: 'Petunjuk',
+            },
         ],
     },
     {
         title: 'Sosial',
         data: [
-            { url: 'https://', title: 'Facebook' },
-            { url: 'https://', title: 'Instagram' },
-            { url: 'https://', title: 'Tiktok' },
+            { isExternal: true, url: 'https://', title: 'Facebook' },
+            { isExternal: true, url: 'https://', title: 'Instagram' },
+            { isExternal: true, url: 'https://', title: 'Tiktok' },
         ],
     },
     {
-        title: 'Support',
+        title: 'Sistem Terkait',
         data: [
-            { url: 'https://', title: 'E-Lapor' },
-            { url: 'https://', title: 'Instagram' },
-            { url: 'https://', title: 'Tiktok' },
+            {
+                isExternal: true,
+                url: 'https://lapor.go.id',
+                title: 'SP4N Lapor',
+            },
+            { isExternal: true, url: 'https://oss.go.id', title: 'OSS RBA' },
+            {
+                isExternal: true,
+                url: 'https://dpmptsp.pangkalpinangkota.go.id',
+                title: 'Website DPMPTSP',
+            },
         ],
     },
 ]
@@ -53,9 +78,22 @@ export const MenuList = ({ item }: { item: IData }) => {
                 {item?.data?.length
                     ? item?.data?.map((subitem) => (
                           <li key={subitem?.title}>
-                              <a href={subitem?.url} className="font-light">
-                                  {subitem.title ?? ''}
-                              </a>
+                              {subitem.isExternal ? (
+                                  <a
+                                      target="_blank"
+                                      href={subitem?.url}
+                                      className="font-light"
+                                  >
+                                      {subitem.title ?? ''}
+                                  </a>
+                              ) : (
+                                  <Link
+                                      to={subitem?.url}
+                                      className="font-light"
+                                  >
+                                      {subitem.title ?? ''}
+                                  </Link>
+                              )}
                           </li>
                       ))
                     : null}

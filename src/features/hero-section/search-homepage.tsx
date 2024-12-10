@@ -1,8 +1,34 @@
 import { usePencarianModalStore } from '@/store/modal/modal-pencarian'
 import { Search } from 'lucide-react'
+import TagsSearch from './tags-search'
+
+const tags: string[] = [
+    'KTP Elektronik',
+    'Kartu Keluarga',
+    'Akta Kelahiran',
+    'Pindah Domisili',
+    'Izin Usaha',
+    'IMB/PBG',
+    'Beasiswa',
+    'BPJS Kesehatan',
+    'Bantuan Sosial',
+    'Kartu Prakerja',
+    'Perbaikan Jalan',
+    'SKCK',
+    'Sertifikat Tanah',
+    'Pajak Kendaraan',
+    'PBB',
+    'Vaksinasi',
+    'Laporan Kehilangan',
+    'Pengaduan Online',
+]
 
 export const SearchHomepage = () => {
-    const { setOpen, keyword } = usePencarianModalStore()
+    const { setOpen, keyword, setKeyword } = usePencarianModalStore()
+    const handleClick = (value: string) => {
+        setKeyword(value)
+        setOpen(true)
+    }
 
     return (
         <section id="form_input" className="-mt-3 md:-mt-24 relative z-20">
@@ -27,21 +53,13 @@ export const SearchHomepage = () => {
                         id="tags"
                         className="flex mt-4 gap-3 md:flex-wrap overflow-x-auto"
                     >
-                        <div className="bg-gray-400/20 px-4 py-2 rounded-md text-gray-500">
-                            Bangunan
-                        </div>
-                        <div className="bg-gray-400/20 px-4 py-2 rounded-md text-gray-500">
-                            Bangunan
-                        </div>
-                        <div className="bg-gray-400/20 px-4 py-2 rounded-md text-gray-500">
-                            Bangunan
-                        </div>
-                        <div className="bg-gray-400/20 px-4 py-2 rounded-md text-gray-500">
-                            Bangunan
-                        </div>
-                        <div className="bg-gray-400/20 px-4 py-2 rounded-md text-gray-500">
-                            Bangunan
-                        </div>
+                        {tags.map((item, index) => (
+                            <TagsSearch
+                                tags={item}
+                                key={index}
+                                onClick={handleClick}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>

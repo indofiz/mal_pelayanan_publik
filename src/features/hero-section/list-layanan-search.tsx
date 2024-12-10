@@ -9,7 +9,7 @@ export const ListLayananSearch = () => {
     const { data, isLoading, isError } = useLayananQuery({ keyword })
     return (
         <div className="px-4 mt-1 md:mt-2">
-            <ScrollArea className="h-[300px] rounded-md border p-4 bg-white">
+            <ScrollArea className="h-[300px] rounded-md border p-4 bg-white relative">
                 {isError && <div>Terjadi kesalahan</div>}
                 {isLoading && (
                     <div className="inset-0 flex justify-center gap-2 items-center absolute">
@@ -17,11 +17,25 @@ export const ListLayananSearch = () => {
                         Loading...
                     </div>
                 )}
-                {data && data?.data?.length
+                {!isError && !isLoading && data && data?.data?.length
                     ? data?.data?.map((item) => (
                           <ListData key={item.id_layanan} data={item} />
                       ))
                     : null}
+                {!isError && !isLoading && data && data?.data?.length == 0 ? (
+                    <div className="inset-0 absolute grid place-content-center">
+                        <div className="flex flex-col justify-center items-center max-w-xs text-center">
+                            <img src="/file.png" className="w-20" alt="" />
+                            <div className="font-semibold mt-4 text-lg">
+                                Layanan Tidak Ditemukan
+                            </div>
+                            <p className="text-gray-500 mt-1 font-normal">
+                                Silahkan lakukan pencarian dengan keyword yang
+                                berbeda.
+                            </p>
+                        </div>
+                    </div>
+                ) : null}
             </ScrollArea>
         </div>
     )

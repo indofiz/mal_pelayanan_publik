@@ -25,7 +25,7 @@ import {
 import { jsonToFormData } from '@/lib/jsonToFormData'
 import { useAntrianmMutation } from '@/common/query/query-antrian'
 import { toast } from 'sonner'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const formSchema = z.object({
     tanggal: z.date(),
@@ -34,7 +34,8 @@ const formSchema = z.object({
 
 type FormSchemaType = z.infer<typeof formSchema>
 
-export function AntrianForm2() {
+export function Antrian2Form2() {
+    const { layanan } = useParams()
     const navigate = useNavigate()
     const form = useForm<FormSchemaType>({
         resolver: zodResolver(formSchema),
@@ -47,6 +48,14 @@ export function AntrianForm2() {
         const formDatas = jsonToFormData({
             ...formData,
             ...data,
+            id_layanan: layanan,
+            tanggal: format(data.tanggal, 'yyyy-MM-dd'),
+            jam: format(data.jam, 'HH:mm'),
+        })
+        console.log({
+            ...formData,
+            ...data,
+            id_layanan: layanan,
             tanggal: format(data.tanggal, 'yyyy-MM-dd'),
             jam: format(data.jam, 'HH:mm'),
         })
@@ -70,8 +79,8 @@ export function AntrianForm2() {
             } else {
                 toast.error('Pilih jam antara 08:00 - 16:00')
             }
-        } catch (error) {
-            toast.error('Failed to submit the form. Please try again.')
+        } catch (_error) {
+            toast.error(`Failed to submit the form. Please try again.`)
         }
     }
 
@@ -144,9 +153,9 @@ export function AntrianForm2() {
                             </Button>
                             <Button
                                 type="button"
+                                className="md:flex-1"
                                 variant={'outline'}
                                 size={'lg'}
-                                className="md:flex-1"
                                 onClick={prevStep}
                             >
                                 Kembali

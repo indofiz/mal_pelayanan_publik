@@ -7,11 +7,13 @@ import { useStepperAntrianStore } from '@/store/stepper/stepper-antrian-store'
 import { useEffect } from 'react'
 export const AntrianPage = () => {
     const { layanan } = useParams()
-    const { updateFormData } = useStepperAntrianStore()
+    const { updateFormData, reset } = useStepperAntrianStore()
 
     useEffect(() => {
+        reset()
         if (layanan) updateFormData({ id_layanan: layanan.toString() })
-    }, [layanan, updateFormData])
+    }, [layanan, updateFormData, reset])
+
     return (
         <>
             <Header>

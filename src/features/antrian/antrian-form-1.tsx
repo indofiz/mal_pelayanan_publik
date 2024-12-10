@@ -20,7 +20,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import { Square, SquareCheck } from 'lucide-react'
+import { ArrowRight, Square, SquareCheck } from 'lucide-react'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { useStepperAntrianStore } from '@/store/stepper/stepper-antrian-store'
 import { kelaminData, statusKawinData } from '@/common/data/kelamin'
@@ -68,7 +68,6 @@ const initialValues = {
 
 export default function AntrianForm1() {
     const { nextStep, updateFormData, formData } = useStepperAntrianStore()
-
     // console.log({ ...initialValues, ...formData })
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -81,6 +80,7 @@ export default function AntrianForm1() {
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         try {
+            console.log(values)
             updateFormData(values)
             nextStep()
         } catch (error) {
@@ -158,22 +158,20 @@ export default function AntrianForm1() {
                     )}
                 />
 
-                {
-                    <FormField
-                        control={form.control}
-                        name="id_layanan"
-                        render={({ field }) => (
-                            <FormItem className="flex flex-col">
-                                <FormLabel>Layanan :</FormLabel>
-                                <SelectLayanan
-                                    onChange={field.onChange}
-                                    value={field.value}
-                                />
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                }
+                <FormField
+                    control={form.control}
+                    name="id_layanan"
+                    render={({ field }) => (
+                        <FormItem className="flex flex-col">
+                            <FormLabel>Layanan :</FormLabel>
+                            <SelectLayanan
+                                onChange={field.onChange}
+                                value={field.value}
+                            />
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
                 <FormField
                     control={form.control}
                     name="nama_lengkap"
@@ -306,10 +304,19 @@ export default function AntrianForm1() {
                 />
 
                 <div className="flex justify-end gap-2 flex-col md:flex-row">
-                    <Button type="submit" size={'lg'}>
-                        Selanjutnya
+                    <Button
+                        type="submit"
+                        className="md:order-last md:flex-1"
+                        size={'lg'}
+                    >
+                        Selanjutnya <ArrowRight />
                     </Button>
-                    <Button type="reset" variant={'outline'} size={'lg'}>
+                    <Button
+                        type="reset"
+                        variant={'outline'}
+                        className="md:flex-1"
+                        size={'lg'}
+                    >
                         Reset
                     </Button>
                 </div>

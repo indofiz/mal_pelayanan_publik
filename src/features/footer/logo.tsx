@@ -17,9 +17,10 @@ export const LogoFooter = () => {
                 </div>
             </div>
             <div className="text-center mt-1 text-sm font-light lg:text-left">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                faucibus nisi non sapien vehicula, dapibus suscipit augue
-                bibendum. Pellentesque sit amet ornare eros. Sed non velit eros.
+                Mal Pelayanan Publik Kota Pangkalpinang menyediakan layanan
+                pengintegrasian pelayanan publik secara terpadu pada suatu
+                tempat sebagai upaya meningkatkan kecepatan, kemudahan,
+                jangkauan kenyamanan dan keamanan.
             </div>
         </div>
     )

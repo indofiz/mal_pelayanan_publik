@@ -13,6 +13,41 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <RootPage />,
+        errorElement: (
+            <section className="absolute inset-0 grid place-content-center">
+                <div
+                    style={{
+                        maxWidth: 800,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        textAlign: 'center',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <img src="/error.png" width={300} alt="" />
+                    <h3
+                        style={{
+                            fontSize: 24,
+                            fontWeight: 'bolder',
+                            marginTop: '24px',
+                        }}
+                    >
+                        404 NOT FOUND
+                    </h3>
+                    <p
+                        style={{
+                            opacity: 0.8,
+                            margin: '0 auto',
+                            maxWidth: 400,
+                        }}
+                    >
+                        Halaman tidak ditemukan, silahkan coba kembali atau ke{' '}
+                        <a href="/">BERANDA</a>
+                    </p>
+                </div>
+            </section>
+        ),
         children: [
             { path: '/', element: <Homepage /> },
             { path: 'profil', element: <ProfilePage /> },

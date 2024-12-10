@@ -27,7 +27,8 @@ const MapKontak = () => {
                         </div>
                     </div>
                     <div className="text-black_line font-medium text-sm md:text-base">
-                        Alamat : JL. Koba Depan Hotel Grand Safran
+                        Alamat : JL. Soekarno Hatta, Bukit Besar, Kec. Girimaya,
+                        Kota Pangkalpinang, Kepulauan Bangka Belitung 331445
                     </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -47,7 +48,8 @@ const MapKontak = () => {
                         </div>
                     </div>
                     <div className="text-black_line font-medium text-sm md:text-base">
-                        Whatapp : 08000000000
+                        Whatapp :{' '}
+                        <a href="https://wa.me/628524665953">08524665953</a>
                     </div>
                 </div>
             </div>

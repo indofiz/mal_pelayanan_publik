@@ -1,3 +1,4 @@
+import { toast } from 'sonner'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
@@ -21,29 +22,24 @@ import {
 } from '@/components/ui/select'
 import { ArrowRight, Square, SquareCheck } from 'lucide-react'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import SelectPekerjaan from '@/components/extentions/select-pekerjaan'
-import SelectPendidikan from '@/components/extentions/select-pendidikan'
-import { useStepperStore } from '@/store/stepper/stepper-store'
+import { useStepperAntrianStore } from '@/store/stepper/stepper-antrian-store'
+import { kelaminData, statusKawinData } from '@/common/data/kelamin'
 import { getObjectLength } from '@/lib/objectLength'
+import SelectPendidikan from '@/components/extentions/select-pendidikan'
+import SelectPekerjaan from '@/components/extentions/select-pekerjaan'
 import SelectLayanan from '@/components/extentions/select-layanan'
-import { kelaminDataSurvey, statusKawinData } from '@/common/data/kelamin'
-import { toast } from 'sonner'
 
 const formSchema = z.object({
-    email: z.string().email(),
-    whatsapp: z.string().min(1, {
-        message: 'Nama Whatsapp Harus Diisi.',
-    }),
-    tenantId: z.string().min(1, {
-        message: 'Tenant Harus Dipilih.',
+    nama_lengkap: z.string().min(1, {
+        message: 'Nama Lengkap Harus Diisi.',
     }),
     usia: z.string().min(1, {
         message: 'Usia Harus Diisi.',
     }),
-    gender: z.string().min(1, {
+    jenis_kelamin: z.string().min(1, {
         message: 'Jenis Kelamin Harus Diisi.',
     }),
-    statusKawin: z.string().min(1, {
+    status_kawin: z.string().min(1, {
         message: 'Status Kawin Harus Diisi.',
     }),
     pendidikan: z.string().min(1, {
@@ -52,43 +48,36 @@ const formSchema = z.object({
     pekerjaan: z.string().min(1, {
         message: 'Pekerjaan Harus Diisi.',
     }),
-    statusMengurus: z.string().min(1, {
+    jenis_permohonan: z.string().min(1, {
         message: 'Jenis Permohonan Harus Diisi.',
     }),
 })
-
 const initialValues = {
-    email: '',
-    whatsapp: '',
+    nama_lengkap: '',
     usia: '',
-    gender: '',
-    statusKawin: '',
+    jenis_kelamin: '',
+    status_kawin: '',
     pendidikan: '',
     pekerjaan: '',
-    statusMengurus: 'SENDIRI',
-    tenantId: '',
+    jenis_permohonan: '1',
 }
 
-export default function SurveyForm1() {
-    const { nextStep, updateRespondenData, respondenData } = useStepperStore()
+export default function Antrian2Form1() {
+    const { nextStep, updateFormData, formData } = useStepperAntrianStore()
+    // console.log({ ...initialValues, ...formData })
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues:
-            getObjectLength(respondenData) == 0
+            getObjectLength(formData) == 0
                 ? initialValues
-                : {
-                      ...initialValues,
-                      ...respondenData,
-                      usia: respondenData.usia
-                          ? respondenData.usia.toString()
-                          : '',
-                  },
+                : { ...initialValues, ...formData },
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-            updateRespondenData(values)
+            console.log(values)
+            updateFormData(values)
             nextStep()
         } catch (error) {
             console.error('Form submission error', error)
@@ -104,7 +93,7 @@ export default function SurveyForm1() {
             >
                 <FormField
                     control={form.control}
-                    name="statusMengurus"
+                    name="jenis_permohonan"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Permohonan :</FormLabel>
@@ -118,16 +107,16 @@ export default function SurveyForm1() {
                                         <div
                                             className={cn(
                                                 'items-center border border-border bg-white rounded-md justify-center px-2 py-3 gap-4 relative',
-                                                field.value == 'SENDIRI'
+                                                field.value == '1'
                                                     ? 'bg-green_primary text-white border-emerald-700'
                                                     : ''
                                             )}
                                         >
                                             <FormControl className="hidden">
-                                                <RadioGroupItem value="SENDIRI" />
+                                                <RadioGroupItem value="1" />
                                             </FormControl>
                                             <FormLabel className="font-normal flex items-center gap-2 after:content-[''] after:inset-0 after:absolute">
-                                                {field.value == 'SENDIRI' ? (
+                                                {field.value == '1' ? (
                                                     <SquareCheck size={14} />
                                                 ) : (
                                                     <Square size={14} />
@@ -140,16 +129,16 @@ export default function SurveyForm1() {
                                         <div
                                             className={cn(
                                                 'items-center border border-border bg-white rounded-md justify-center px-2 py-3 gap-4 relative',
-                                                field.value == 'DIKUASAKAN'
+                                                field.value == '2'
                                                     ? 'bg-green_primary text-white border-emerald-700'
                                                     : ''
                                             )}
                                         >
                                             <FormControl className="hidden">
-                                                <RadioGroupItem value="DIKUASAKAN" />
+                                                <RadioGroupItem value="2" />
                                             </FormControl>
                                             <FormLabel className="font-normal flex items-center gap-2 after:content-[''] after:inset-0 after:absolute">
-                                                {field.value == 'DIKUASAKAN' ? (
+                                                {field.value == '2' ? (
                                                     <SquareCheck size={14} />
                                                 ) : (
                                                     <Square size={14} />
@@ -167,14 +156,18 @@ export default function SurveyForm1() {
 
                 <FormField
                     control={form.control}
-                    name="tenantId"
+                    name="nama_lengkap"
                     render={({ field }) => (
-                        <FormItem className="flex flex-col">
-                            <FormLabel>Tenant Yang Ingin Disurvey :</FormLabel>
-                            <SelectLayanan
-                                onChange={field.onChange}
-                                value={field.value}
-                            />
+                        <FormItem>
+                            <FormLabel>Nama lengkap :</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder="Masukan nama lengkap"
+                                    type="text"
+                                    {...field}
+                                />
+                            </FormControl>
+
                             <FormMessage />
                         </FormItem>
                     )}
@@ -189,7 +182,7 @@ export default function SurveyForm1() {
                             <FormControl>
                                 <Input
                                     placeholder="Masukan usia"
-                                    type="tel"
+                                    type=""
                                     {...field}
                                 />
                             </FormControl>
@@ -201,7 +194,7 @@ export default function SurveyForm1() {
 
                 <FormField
                     control={form.control}
-                    name="gender"
+                    name="jenis_kelamin"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Jenis Kelamin :</FormLabel>
@@ -215,7 +208,7 @@ export default function SurveyForm1() {
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                    {kelaminDataSurvey.map((item) => (
+                                    {kelaminData.map((item) => (
                                         <SelectItem
                                             key={item.value}
                                             value={item.value}
@@ -230,46 +223,10 @@ export default function SurveyForm1() {
                         </FormItem>
                     )}
                 />
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Email :</FormLabel>
-                            <FormControl>
-                                <Input
-                                    placeholder="Masukan email"
-                                    type="email"
-                                    {...field}
-                                />
-                            </FormControl>
-
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="whatsapp"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Nomor Whatsapp :</FormLabel>
-                            <FormControl>
-                                <Input
-                                    placeholder="Masukan nomor whatsapp"
-                                    type="tel"
-                                    {...field}
-                                />
-                            </FormControl>
-
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
 
                 <FormField
                     control={form.control}
-                    name="statusKawin"
+                    name="status_kawin"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Status Kawin :</FormLabel>
