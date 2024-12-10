@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { isExternal } from 'util/types'
 
 interface ISubItem {
     url: string

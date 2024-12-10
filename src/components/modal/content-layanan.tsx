@@ -1,8 +1,11 @@
 import { CardLayananModal } from '@/features/list-instansi-pelayanan/card-layanan-modal'
 import { CardModal } from '@/features/list-instansi-pelayanan/card-modal'
 import { ScrollArea } from '../ui/scroll-area'
+import { useLayananModalStore } from '@/store/modal/modal-detail-layanan'
 
 const ContentLayanan = () => {
+    const { formData } = useLayananModalStore()
+
     return (
         <ScrollArea className="px-4 h-[300px] px md:h-auto md:max-h-fit">
             <div className="flex flex-row items-center md:flex-row gap-7 md:px-0 mt-8 md:mt-0">
@@ -11,11 +14,11 @@ const ContentLayanan = () => {
                 </div>
                 <div className="md:max-w-md flex flex-col gap-2">
                     <h3 className="font-semibold text-lg md:text-2xl">
-                        Dinas Penanaman Modal dan PTSP
+                        {formData?.instansi ?? '-'}
                     </h3>
                     <p className="text-sm md:text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Mauris condimentum massa purus.
+                        Detail instansi belum tersedia, silahkan edit dihalaman
+                        admin
                     </p>
                 </div>
             </div>
@@ -25,22 +28,22 @@ const ContentLayanan = () => {
                     <CardModal
                         desc="Jumlah Layanan"
                         img="jumlah-layanan.png"
-                        jumlah="04"
+                        jumlah={formData?.total_layanan.toString() ?? '0'}
                     />
                     <CardModal
                         desc="Jumlah Loket"
                         img="jumlah-loket.png"
-                        jumlah="04"
+                        jumlah={formData?.no_tenant.toString() ?? '0'}
                     />
                     <CardModal
                         desc="Jumlah Petugas"
                         img="jumlah-petugas.png"
-                        jumlah="04"
+                        jumlah={formData?.jumlah_petugas.toString() ?? '0'}
                     />
                     <CardModal
                         desc="Total Kunjungan"
                         img="total-kunjungan.png"
-                        jumlah="04"
+                        jumlah={formData?.jumlah_petugas.toString() ?? '0'}
                     />
                 </div>
             </div>

@@ -27,7 +27,6 @@ import { kelaminData, statusKawinData } from '@/common/data/kelamin'
 import { getObjectLength } from '@/lib/objectLength'
 import SelectPendidikan from '@/components/extentions/select-pendidikan'
 import SelectPekerjaan from '@/components/extentions/select-pekerjaan'
-import SelectLayanan from '@/components/extentions/select-layanan'
 
 const formSchema = z.object({
     nama_lengkap: z.string().min(1, {

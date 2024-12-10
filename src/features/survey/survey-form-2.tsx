@@ -11,7 +11,7 @@ import {
     createDynamicSchemaQuisioner,
     createDynamicSchemaValue,
 } from '@/utils/dynamic-schema'
-import { ArrowLeft, ArrowRight, Save } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { useStepperStore } from '@/store/stepper/stepper-store'
 import { getObjectLength } from '@/lib/objectLength'
 
