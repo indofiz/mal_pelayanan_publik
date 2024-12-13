@@ -6,7 +6,9 @@ export const pekerjaanUrl = baseUrl + 'pekerjaan/list'
 export const pendidikanUrl = baseUrl + 'pendidikan/list'
 export const instansiUrl = baseUrl + 'instansi/list'
 export const layananUrl = baseUrl + 'layanan/list'
+export const layananDetailUrl = baseUrl + 'layanan/detail'
 export const regulasiUrl = baseUrl + 'regulasi/list'
+export const fasilitasUrl = baseUrl + 'fasilitas/list'
 export const antrianUrl = baseUrl + 'antrian/save'
 
 export const quisionerUrl = baseUrlSkm + 'event/' + id_event

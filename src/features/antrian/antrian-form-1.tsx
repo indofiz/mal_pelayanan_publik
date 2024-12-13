@@ -51,6 +51,9 @@ const formSchema = z.object({
     pekerjaan: z.string().min(1, {
         message: 'Pekerjaan Harus Diisi.',
     }),
+    mobile: z.string().min(1, {
+        message: 'Nomor HP Harus Diisi.',
+    }),
     jenis_permohonan: z.string().min(1, {
         message: 'Jenis Permohonan Harus Diisi.',
     }),
@@ -64,6 +67,7 @@ const initialValues = {
     pekerjaan: '',
     jenis_permohonan: '1',
     id_layanan: '',
+    mobile: '',
 }
 
 export default function AntrianForm1() {
@@ -182,6 +186,24 @@ export default function AntrianForm1() {
                                 <Input
                                     placeholder="Masukan nama lengkap"
                                     type="text"
+                                    {...field}
+                                />
+                            </FormControl>
+
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="mobile"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Nomor HP :</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder="08xxxxxxxxxx"
+                                    type="tel"
                                     {...field}
                                 />
                             </FormControl>

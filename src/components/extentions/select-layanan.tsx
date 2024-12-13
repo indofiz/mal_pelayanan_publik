@@ -24,7 +24,6 @@ const SelectLayanan: React.FC<ISelectLayanan> = ({ onChange, value }) => {
 
     const { data: layananData } = useLayananQuery({ keyword, per_page: 30 })
     const [open, setOpen] = useState<boolean>(false)
-
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
@@ -72,12 +71,17 @@ const SelectLayanan: React.FC<ISelectLayanan> = ({ onChange, value }) => {
                                         <Check
                                             className={cn(
                                                 'mr-2 h-4 w-4',
-                                                items.id_layanan === value
+                                                items.id_layanan == value
                                                     ? 'opacity-100'
                                                     : 'opacity-0'
                                             )}
                                         />
-                                        {items.layanan}
+                                        <span>
+                                            {items.layanan} -{' '}
+                                            <span className="text-[10px] font-light text-gray-500">
+                                                {items.nama_instansi}
+                                            </span>
+                                        </span>
                                     </CommandItem>
                                 ))}
                         </CommandGroup>

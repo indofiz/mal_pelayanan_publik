@@ -139,6 +139,7 @@ export function AntrianForm2() {
                                 type="submit"
                                 className="md:order-last md:flex-1"
                                 size={'lg'}
+                                disabled={mutationPost.isLoading}
                             >
                                 <Check /> Ajukan Antrian
                             </Button>

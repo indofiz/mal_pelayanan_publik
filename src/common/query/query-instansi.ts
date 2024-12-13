@@ -18,7 +18,7 @@ export interface IInstansi {
 
 export const useInstansiQuery = () => {
     return useQuery<IInstansiResponse>(['instansi'], async () => {
-        const response = await fetch(instansiUrl)
+        const response = await fetch(instansiUrl + '?per_page=100')
         const data: IInstansiResponse = await response.json()
 
         if (!response.ok || !data.status) {

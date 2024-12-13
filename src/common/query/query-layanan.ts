@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query'
 import { layananUrl } from '../url'
+import { objectToParam } from '@/lib/objectToParam'
 
 interface ISearchType {
     status: string
@@ -22,19 +23,23 @@ export interface IDataLayanan {
     id_instansi: string
     created_at?: string
     updated_at?: string
+    nama_instansi?: string
 }
 export const useLayananQuery = ({
     keyword,
+    id_instansi,
     per_page = 5,
 }: {
     keyword?: string
     per_page?: number
+    id_instansi?: string
 }) => {
     return useQuery<ISearchType>(['pencarian-layanan', keyword], async () => {
-        const paramUrl = keyword
-            ? `?keyword=${keyword}&per_page=${per_page}`
-            : '?per_page=' + per_page
-        const url = `${layananUrl}${paramUrl}`
+        const objToParam = objectToParam({
+            id_instansi,
+            keyword,
+        })
+        const url = `${layananUrl}?${objToParam}&per_page=${per_page}`
 
         const response = await fetch(url)
         const data: ISearchType = await response.json()
