@@ -20,7 +20,7 @@ const CardPelayanan = ({ instansi }: { instansi: IInstansi }) => {
                         className="w-12 md:w-16"
                         alt=""
                     />
-                    <div className="size-10 bg-slate-200/35 rounded-full absolute left-9 top-10 md:top-20 md:left-16 -z-[4]"></div>
+                    <div className="size-10 bg-slate-200/35 rounded-full absolute left-9 top-10 md:top-16 md:left-16 -z-[4]"></div>
                     <div className="size-11 bg-slate-200/35 rounded-full absolute left-3 top-4 md:top-8 md:left-4 -z-[4]"></div>
                     <div className="font-semibold text-lg leading-6 md:text-2xl md:mt-2">
                         <span className="capitalize">{instansi?.instansi}</span>

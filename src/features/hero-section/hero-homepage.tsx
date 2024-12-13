@@ -8,7 +8,7 @@ export const HeroHomepage = () => {
             <div className="mb-8 px-6 md:max-w-5xl md:mx-auto md:mt-16">
                 <h2 className="text-center font-bold text-2xl md:text-5xl lg:text-6xl md:px-12 text-black_line mb-3 leading-8 md:leading-tight lg:leading-snug">
                     Selamat Datang di <br /> Mal Pelayanan Publik (MPP) <br />{' '}
-                    Kota Pangkalpinang
+                    Kota Pangkal Pinang
                 </h2>
                 <h3 className="text-center font-semibold text-sm md:text-xl md:font-semibold text-black_line mb-4 md:mt-6">
                     Buka Senin - Jumat Dari Jam 08:00 Sampai 16:00
@@ -30,7 +30,7 @@ export const HeroHomepage = () => {
                     Isi Survey
                 </Link>
             </div>
-            <div className="w-full bg-hero-img bg-left-bottom bg-no-repeat h-32 md:h-64 md:px-4 md:bg-center bg-cover md:bg-contain"></div>
+            <div className="w-full bg-hero-img bg-left-bottom bg-no-repeat h-32 md:h-44 lg:h-64 lg:px-4 lg:bg-center bg-cover md:bg-contain"></div>
         </div>
     )
 }

@@ -11,12 +11,17 @@ import {
     createDynamicSchemaQuisioner,
     createDynamicSchemaValue,
 } from '@/utils/dynamic-schema'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Loader } from 'lucide-react'
 import { useStepperStore } from '@/store/stepper/stepper-store'
 import { getObjectLength } from '@/lib/objectLength'
 
 export const SurveyForm2 = () => {
-    const { data: dataQuisioner, isLoading } = useEventQuery()
+    const {
+        data: dataQuisioner,
+        isLoading,
+        isRefetching,
+        isFetching,
+    } = useEventQuery()
     const { nextStep, prevStep, updatePertanyaanData, pertanyaanData } =
         useStepperStore()
 
@@ -51,7 +56,15 @@ export const SurveyForm2 = () => {
         })
     }
 
-    if (isLoading) return <div>Loading...</div>
+    if (isLoading || isFetching || isRefetching)
+        return (
+            <div className="relative h-64">
+                <div className="inset-0 flex justify-center gap-2 items-center absolute">
+                    <Loader className=" animate-spin" />
+                    Loading...
+                </div>
+            </div>
+        )
 
     return (
         <div className="flex flex-col gap-4">

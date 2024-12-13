@@ -43,13 +43,13 @@ const ContentLayanan = () => {
                         desc="Jumlah Layanan"
                         img="jumlah-layanan.png"
                         jumlah={
-                            formData?.total_layanan
-                                ? formData?.total_layanan.toString()
+                            formData?.layanan.length
+                                ? formData?.layanan.length.toString()
                                 : '0'
                         }
                     />
                     <CardModal
-                        desc="Jumlah Loket"
+                        desc="Nomor Tenant"
                         img="jumlah-loket.png"
                         jumlah={
                             formData?.no_tenant

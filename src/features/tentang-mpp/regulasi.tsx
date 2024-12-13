@@ -14,18 +14,15 @@ export const RegulasiMPP = () => {
                         className="text-left text-xl mb-2 lg:text-2xl"
                     />
                     <div className="flex flex-col gap-2 md:mt-8">
-                        {dataRegulasi &&
-                            dataRegulasi.data?.map((regulasi) => (
-                                <RegulasiList
-                                    key={regulasi.id_regulasi}
-                                    title={regulasi.judul}
-                                    link={regulasi.file}
-                                />
-                            ))}
-                        <RegulasiList
-                            title="Peraturan Presiden RI No 89 Tahun 2021 Tentang Penyelengaraan Mal Pelayanan Publik"
-                            link="/regulasi/1"
-                        />
+                        {dataRegulasi
+                            ? dataRegulasi.data?.map((regulasi) => (
+                                  <RegulasiList
+                                      key={regulasi.id_regulasi}
+                                      title={regulasi.judul}
+                                      link={regulasi.file}
+                                  />
+                              ))
+                            : null}
                     </div>
                 </div>
             </div>

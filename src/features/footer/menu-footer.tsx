@@ -51,6 +51,12 @@ const data: IData[] = [
             { isExternal: true, url: 'https://oss.go.id', title: 'OSS RBA' },
             {
                 isExternal: true,
+                url: 'https://sicantik.go.id',
+                title: 'Si Cantik',
+            },
+            { isExternal: true, url: 'https://simbg.pu.go.id', title: 'SIMBG' },
+            {
+                isExternal: true,
                 url: 'https://dpmptsp.pangkalpinangkota.go.id',
                 title: 'Website DPMPTSP',
             },

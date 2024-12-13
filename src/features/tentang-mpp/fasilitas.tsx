@@ -24,15 +24,18 @@ export const FasilitasMPP = () => {
                                     <div
                                         key={fasilitas.id_fasilitas}
                                         className={cn(
-                                            'lg:col-span-1',
+                                            'lg:col-span-1 relative',
                                             isFullWidth ? 'col-span-2' : ''
                                         )}
                                     >
+                                        <span className="absolute top-2 left-0 px-4 rounded-r-md py-2 text-xs text-black_line bg-white">
+                                            {fasilitas.nama_fasilitas}
+                                        </span>
                                         <PhotoView src={fasilitas.foto}>
                                             <img
                                                 src={fasilitas.foto}
                                                 alt={`Image ${fasilitas.nama_fasilitas}`}
-                                                className="w-full h-auto"
+                                                className="w-full h-auto rounded-lg"
                                             />
                                         </PhotoView>
                                     </div>
