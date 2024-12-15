@@ -17,8 +17,8 @@ const ContentLayanan = () => {
     })
 
     return (
-        <ScrollArea className="px-4 h-[300px] px md:h-auto md:max-h-fit">
-            <div className="flex flex-row items-center md:flex-row gap-7 md:px-0 mt-8 md:mt-0">
+        <ScrollArea className="px-4 h-[500px] px md:h-auto md:max-h-fit">
+            <div className="flex flex-row justify-start items-center md:flex-row gap-7 md:px-0 mt-8 md:mt-0">
                 <div className="w-40 md:w-auto">
                     <img
                         src={formData?.logo}
@@ -26,11 +26,11 @@ const ContentLayanan = () => {
                         alt={`Logo Instansi ${formData?.instansi}`}
                     />
                 </div>
-                <div className="md:max-w-md flex flex-col gap-2">
+                <div className="md:max-w-md flex flex-1 flex-col gap-2">
                     <h3 className="font-semibold text-lg md:text-2xl">
                         {formData?.instansi ?? '-'}
                     </h3>
-                    <p className="text-sm md:text-base">
+                    <p className="text-sm md:text-base text-gray-500">
                         Detail instansi belum tersedia, silahkan edit dihalaman
                         admin
                     </p>

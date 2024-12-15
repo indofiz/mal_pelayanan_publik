@@ -34,20 +34,23 @@ export const useLayananQuery = ({
     per_page?: number
     id_instansi?: string
 }) => {
-    return useQuery<ISearchType>(['pencarian-layanan', keyword], async () => {
-        const objToParam = objectToParam({
-            id_instansi,
-            keyword,
-        })
-        const url = `${layananUrl}?${objToParam}&per_page=${per_page}`
+    return useQuery<ISearchType>(
+        ['pencarian-layanan', { keyword, id_instansi, per_page }],
+        async () => {
+            const objToParam = objectToParam({
+                id_instansi,
+                keyword,
+            })
+            const url = `${layananUrl}?${objToParam}&per_page=${per_page}`
 
-        const response = await fetch(url)
-        const data: ISearchType = await response.json()
+            const response = await fetch(url)
+            const data: ISearchType = await response.json()
 
-        if (!response.ok || !data.status) {
-            throw new Error('Network response was not ok')
+            if (!response.ok || !data.status) {
+                throw new Error('Network response was not ok')
+            }
+
+            return data
         }
-
-        return data
-    })
+    )
 }

@@ -50,7 +50,7 @@ const ListData = ({ data }: { data: IDataLayanan }) => {
                 </span>
                 <span>
                     {data.layanan.length > 30
-                        ? data.layanan.slice(0, 20) + '...'
+                        ? data.layanan.slice(0, 30) + '...'
                         : data.layanan}{' '}
                 </span>
             </div>

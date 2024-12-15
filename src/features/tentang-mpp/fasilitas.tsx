@@ -28,7 +28,7 @@ export const FasilitasMPP = () => {
                                             isFullWidth ? 'col-span-2' : ''
                                         )}
                                     >
-                                        <span className="absolute top-2 left-0 px-4 rounded-r-md py-2 text-xs text-black_line bg-white">
+                                        <span className="absolute top-2 left-0 px-4 rounded-r-md py-2 text-xs text-black_line bg-white/70 md:bg-white">
                                             {fasilitas.nama_fasilitas}
                                         </span>
                                         <PhotoView src={fasilitas.foto}>

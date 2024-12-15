@@ -19,7 +19,7 @@ export const RegulasiMPP = () => {
                                   <RegulasiList
                                       key={regulasi.id_regulasi}
                                       title={regulasi.judul}
-                                      link={regulasi.file}
+                                      link={regulasi.file_url}
                                   />
                               ))
                             : null}

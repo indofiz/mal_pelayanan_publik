@@ -14,6 +14,7 @@ export const RegulasiList: React.FC<IRegulasiList> = ({ title, link }) => {
             <div className="flex-none">
                 <a
                     href={link}
+                    target="_blank"
                     className="size-12 md:size-auto flex items-center justify-center gap-2 md:py-2 md:px-4 font-semibold  hover:text-white hover:bg-green_primary transition-all duration-150 text-green_primary bg-white border border-green_primary rounded-lg"
                 >
                     <BiDownload size={24} />{' '}

@@ -46,7 +46,7 @@ export const Navbar = () => {
                         Instansi
                     </Link>
                     <Link
-                        to="/petunjuk"
+                        to=""
                         className="font-semibold hover:text-green_primary transition-all duration-200 text-xl md:text-base"
                     >
                         Petunjuk

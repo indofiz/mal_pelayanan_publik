@@ -2,25 +2,22 @@ import { usePencarianModalStore } from '@/store/modal/modal-pencarian'
 import { Search } from 'lucide-react'
 import TagsSearch from './tags-search'
 
-const tags: string[] = [
-    'KTP Elektronik',
-    'Kartu Keluarga',
-    'Akta Kelahiran',
-    'Pindah Domisili',
-    'Izin Usaha',
-    'IMB/PBG',
+const tags = [
+    'Kelahiran',
+    'Kematian',
+    'Perkawinan',
+    'KK',
+    'KTP',
+    'KIA',
+    'Pajak',
+    'BPJS',
     'Beasiswa',
-    'BPJS Kesehatan',
-    'Bantuan Sosial',
-    'Kartu Prakerja',
-    'Perbaikan Jalan',
-    'SKCK',
-    'Sertifikat Tanah',
-    'Pajak Kendaraan',
-    'PBB',
-    'Vaksinasi',
-    'Laporan Kehilangan',
-    'Pengaduan Online',
+    'SKHPN',
+    'Haji',
+    'Internet',
+    'Listrik',
+    'Retribusi',
+    'Pertanahan',
 ]
 
 export const SearchHomepage = () => {

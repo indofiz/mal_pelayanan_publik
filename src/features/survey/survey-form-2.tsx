@@ -4,7 +4,6 @@ import { z } from 'zod'
 
 import { Form, FormField } from '@/components/ui/form'
 import { RadioPertanyaan } from './radio-pertanyaan-card'
-import { toast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
 import { useEventQuery } from '@/common/query/query-event'
 import {
@@ -14,6 +13,7 @@ import {
 import { ArrowRight, Loader } from 'lucide-react'
 import { useStepperStore } from '@/store/stepper/stepper-store'
 import { getObjectLength } from '@/lib/objectLength'
+import ErrorNotif from '@/components/extentions/error-notif'
 
 export const SurveyForm2 = () => {
     const {
@@ -21,6 +21,7 @@ export const SurveyForm2 = () => {
         isLoading,
         isRefetching,
         isFetching,
+        isError,
     } = useEventQuery()
     const { nextStep, prevStep, updatePertanyaanData, pertanyaanData } =
         useStepperStore()
@@ -44,26 +45,34 @@ export const SurveyForm2 = () => {
     function onSubmit(datas: z.infer<typeof dynamicSchema>) {
         updatePertanyaanData(datas)
         nextStep()
-        toast({
-            title: 'You submitted the following values:',
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">
-                        {JSON.stringify(datas, null, 2)}
-                    </code>
-                </pre>
-            ),
-        })
     }
 
+    // if (isLoading || isFetching || isRefetching)
+    //     return (
+    //         <div className="relative h-64">
+    //             <div className="inset-0 flex justify-center gap-2 items-center absolute">
+    //                 <Loader className=" animate-spin" />
+    //                 Loading...
+    //             </div>
+    //         </div>
+    //     )
     if (isLoading || isFetching || isRefetching)
         return (
-            <div className="relative h-64">
-                <div className="inset-0 flex justify-center gap-2 items-center absolute">
-                    <Loader className=" animate-spin" />
-                    Loading...
-                </div>
+            <div className="space-y-6">
+                <LoadingPertanyaan />
+                <LoadingPertanyaan />
+                <LoadingPertanyaan />
+                <LoadingPertanyaan />
+                <LoadingPertanyaan />
             </div>
+        )
+
+    if (isError || dataQuisioner?.data?.quesioners?.length == 0)
+        return (
+            <ErrorNotif
+                message="Terjadi Kesalahan"
+                sub_message="Silahkan coba lagi, atau refresh halaman."
+            />
         )
 
     return (
@@ -110,6 +119,39 @@ export const SurveyForm2 = () => {
                     </div>
                 </form>
             </Form>
+        </div>
+    )
+}
+
+const LoadingPertanyaan = () => {
+    return (
+        <div className="border relative border-border_card rounded-xl p-4 text-gray-800">
+            <div className="inset-0 flex justify-center gap-2 items-center absolute">
+                <Loader className="opacity-30 animate-spin" />
+            </div>
+            <div className="animate-pulse flex flex-col gap-2">
+                <div className="h-5 bg-slate-200/40 rounded w-1/2"></div>
+                <div className="h-3 bg-slate-200/40 rounded w-3/4"></div>
+                <div className="h-3 bg-slate-200/40 rounded"></div>
+            </div>
+            <div className="animate-pulse flex flex-col gap-1 mt-3">
+                <div className="flex gap-2 items-center">
+                    <div className="size-6 rounded-full bg-slate-200/40"></div>
+                    <div className="h-3 bg-slate-200/40 rounded w-1/3"></div>
+                </div>
+                <div className="flex gap-2 items-center">
+                    <div className="size-6 rounded-full bg-slate-200/40"></div>
+                    <div className="h-3 bg-slate-200/40 rounded w-1/3"></div>
+                </div>
+                <div className="flex gap-2 items-center">
+                    <div className="size-6 rounded-full bg-slate-200/40"></div>
+                    <div className="h-3 bg-slate-200/40 rounded w-1/3"></div>
+                </div>
+                <div className="flex gap-2 items-center">
+                    <div className="size-6 rounded-full bg-slate-200/40"></div>
+                    <div className="h-3 bg-slate-200/40 rounded w-1/3"></div>
+                </div>
+            </div>
         </div>
     )
 }

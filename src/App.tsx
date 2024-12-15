@@ -8,6 +8,7 @@ import { SurveyPage } from './pages/surveypage'
 import { Homepage } from './pages/homepage'
 import { AntrianPage } from './pages/antrianpage'
 import { Toaster } from 'sonner'
+import { InstansiPage } from './pages/instansipage'
 
 const router = createBrowserRouter([
     {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
             {
                 path: 'antrian',
                 element: <AntrianPage />,
+            },
+            {
+                path: 'instansi',
+                element: <InstansiPage />,
             },
             {
                 path: 'antrian/:layanan',

@@ -10,7 +10,7 @@ export interface IResponse {
 export interface IRegulasi {
     id_regulasi: number
     judul: string
-    file: string
+    file_url: string
     aktif: string
     created_at: string
     updated_at: string
