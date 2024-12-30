@@ -29,7 +29,7 @@ const TitleHeader = ({
             </h2>
             <div
                 className={cn(
-                    'text-justify text-sm md:text-lg leading-6 lg:leading-loose',
+                    'text-justify text-sm md:text-lg capitalize max-w-xl leading-6 lg:leading-loose',
                     isCenter ? 'lg:text-center' : ' lg:text-left',
                     classNameSub ?? ''
                 )}

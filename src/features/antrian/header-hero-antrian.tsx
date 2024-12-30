@@ -1,8 +1,13 @@
 import { useParams } from 'react-router-dom'
 import TitleHeader from '../../components/title-header'
+import { useDetailLayananQuery } from '@/common/query/query-layanan-detail'
 
 const HeroAntrian = () => {
     const { layanan } = useParams()
+
+    const { data: layananDetailData, isLoading } = useDetailLayananQuery({
+        id: layanan || '',
+    })
 
     return (
         <div className="container mx-auto pb-4 lg:pb-12 md:px-4 lg:px-0">
@@ -12,7 +17,11 @@ const HeroAntrian = () => {
                     title="Antrian Online"
                     subTitle={
                         layanan
-                            ? `Lakukan antrian online di ${layanan}`
+                            ? `Lakukan antrian online layanan ${
+                                  layananDetailData?.data?.layanan ?? ''
+                              } ${layananDetailData?.data?.nama_instansi}`
+                            : isLoading
+                            ? 'Loading...'
                             : 'Lakukan antrian online di Pangkalpinang'
                     }
                     classNameSub="-mt-3 md:-mt-4"
