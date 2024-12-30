@@ -70,6 +70,7 @@ export function AntrianForm2() {
             } else {
                 toast.error('Pilih jam antara 08:00 - 16:00')
             }
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
             toast.error('Failed to submit the form. Please try again.')
         }
