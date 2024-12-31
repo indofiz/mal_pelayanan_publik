@@ -2,7 +2,8 @@ import CardPelayanan from './card'
 import { useInstansiQuery } from '@/common/query/query-instansi'
 
 const ListData = () => {
-    const { data, isLoading, isFetching, isRefetching } = useInstansiQuery()
+    const { data, isLoading, isFetching, isRefetching, isError } =
+        useInstansiQuery()
 
     if (isLoading || isFetching || isRefetching) {
         return (
@@ -15,6 +16,23 @@ const ListData = () => {
                 <InstansiLoadingCard />
                 <InstansiLoadingCard />
                 <InstansiLoadingCard />
+            </div>
+        )
+    }
+
+    if (isError || data?.data?.length == 0) {
+        return (
+            <div className="max-w-72 mx-auto ">
+                <img src="/no_data.png" className="w-48 mx-auto" alt="" />
+                <div>
+                    <h3 className="text-center text-2xl mt-6 font-semibold text-black_line">
+                        Tidak Ada Data atau Server Bermasalah
+                    </h3>
+                    <p className="text-center mt-2 text-gray-500 font-light">
+                        Silahkan coba lagi, atau tunggu sampai server kembali
+                        aktif.
+                    </p>
+                </div>
             </div>
         )
     }
