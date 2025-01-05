@@ -18,13 +18,17 @@ export interface ILayanan {
 }
 
 export const useDetailLayananQuery = ({ id }: { id: string | number }) => {
-    return useQuery<IResponse>(['layanan', { id }], async () => {
-        const response = await fetch(layananDetailUrl + '/' + id)
-        const data: IResponse = await response.json()
+    return useQuery<IResponse>(
+        ['layanan', { id }],
+        async () => {
+            const response = await fetch(layananDetailUrl + '/' + id)
+            const data: IResponse = await response.json()
 
-        if (!response.ok || data.status !== 'success') {
-            throw new Error('Network response was not ok')
-        }
-        return data
-    })
+            if (!response.ok || data.status !== 'success') {
+                throw new Error('Network response was not ok')
+            }
+            return data
+        },
+        { enabled: !!id }
+    )
 }

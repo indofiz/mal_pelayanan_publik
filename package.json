@@ -36,6 +36,7 @@
     "react-query": "^3.39.3",
     "react-responsive": "^10.0.0",
     "react-router-dom": "^6.28.0",
+    "recharts": "^2.15.0",
     "sonner": "^1.7.0",
     "sooner": "^1.1.4",
     "tailwind-merge": "^2.5.4",

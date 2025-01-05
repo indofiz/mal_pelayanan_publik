@@ -54,6 +54,10 @@ const router = createBrowserRouter([
             { path: 'profil', element: <ProfilePage /> },
             { path: 'survey', element: <SurveyPage /> },
             {
+                path: 'survey/:survey',
+                element: <SurveyPage />,
+            },
+            {
                 path: 'antrian',
                 element: <AntrianPage />,
             },

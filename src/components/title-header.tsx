@@ -4,6 +4,7 @@ const TitleHeader = ({
     title,
     subTitle,
     isCenter = false,
+    isLarge = false,
     classNameSub,
 }: {
     title: string
@@ -11,6 +12,7 @@ const TitleHeader = ({
     isHidden?: boolean
     isCenter?: boolean
     classNameSub?: string
+    isLarge?: boolean
 }) => {
     return (
         <div
@@ -31,7 +33,8 @@ const TitleHeader = ({
                 className={cn(
                     'text-justify text-sm md:text-lg capitalize max-w-xl leading-6 lg:leading-loose',
                     isCenter ? 'lg:text-center' : ' lg:text-left',
-                    classNameSub ?? ''
+                    classNameSub ?? '',
+                    isLarge ? 'max-w-4xl' : ''
                 )}
             >
                 {subTitle}
