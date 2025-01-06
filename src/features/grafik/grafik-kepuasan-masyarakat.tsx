@@ -1,5 +1,6 @@
 import { cn } from '@/utils/utils'
 import ChartGKM from './chart-gkm'
+import { useReportSKMQuery } from '@/common/query/query-report-skm'
 
 interface IGrafikKepuasanMasyarakat {
     className: string
@@ -7,6 +8,7 @@ interface IGrafikKepuasanMasyarakat {
 const GrafikKepuasanMasyarakat: React.FC<IGrafikKepuasanMasyarakat> = ({
     className,
 }) => {
+    const { data: dataReport, isLoading } = useReportSKMQuery()
     return (
         <div
             className={cn(
@@ -19,7 +21,11 @@ const GrafikKepuasanMasyarakat: React.FC<IGrafikKepuasanMasyarakat> = ({
                 Grafik Kepuasan Masyarakat
             </h3>
             <div className="mt-6">
-                <ChartGKM />
+                {!isLoading ? (
+                    <ChartGKM data={dataReport?.data ?? []} />
+                ) : (
+                    <>LOADING...</>
+                )}
             </div>
         </div>
     )

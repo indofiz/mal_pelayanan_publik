@@ -1,3 +1,4 @@
+import { IReportSKM } from '@/common/query/query-report-skm'
 import {
     ChartConfig,
     ChartContainer,
@@ -5,69 +6,69 @@ import {
     ChartTooltipContent,
 } from '@/components/ui/chart'
 import { Bar, BarChart, XAxis, YAxis } from 'recharts'
-const chartData = [
-    { survey: 'chrome', persentase: 56, fill: 'var(--color-chrome)' },
-    { survey: 'safari', persentase: 34, fill: 'var(--color-safari)' },
-    { survey: 'firefox', persentase: 12, fill: 'var(--color-firefox)' },
-    { survey: 'edge', persentase: 32, fill: 'var(--color-edge)' },
-    { survey: 'other', persentase: 78, fill: 'var(--color-other)' },
-    { survey: 'other', persentase: 90, fill: 'var(--color-other)' },
-    { survey: 'other', persentase: 90, fill: 'var(--color-other)' },
-    { survey: 'chrome', persentase: 100, fill: 'var(--color-other)' },
-]
 
-const chartConfig = {
-    persentase: {
-        label: 'Persentase',
-    },
-    PERSYARATAN: {
-        label: 'PERSYARATAN',
-        color: 'hsl(var(--chart-green))',
-    },
-    PROSEDUR: {
-        label: 'PROSEDUR',
-        color: 'hsl(var(--chart-yellow))',
-    },
-    KECEPATAN_LAYANAN: {
-        label: 'KECEPATAN LAYANAN',
-        color: 'hsl(var(--chart-3))',
-    },
-    BIAYA_PELAYANAN: {
-        label: 'BIAYA PELAYANAN',
-        color: 'hsl(var(--chart-4))',
-    },
-    INFORMASI_LAYANAN: {
-        label: 'INFORMASI LAYANAN',
-        color: 'hsl(var(--chart-5))',
-    },
-    KOMPETENSI_PELAKSANA: {
-        label: 'KOMPETENSI PELAKSANA',
-        color: 'hsl(var(--chart-5))',
-    },
-    PERILAKU_PELAYANAN: {
-        label: 'PERILAKU PELAYANAN',
-        color: 'hsl(var(--chart-5))',
-    },
-    PENANGANAN_ADUAN: {
-        label: 'PENANGANAN ADUAN',
-        color: 'hsl(var(--chart-5))',
-    },
-    SARANA_PRASARANA: {
-        label: 'SARANA PRASARANA',
-        color: 'hsl(var(--chart-5))',
-    },
-} satisfies ChartConfig
+type OutputDataChart = {
+    survey: string
+    persentase: number
+    fill: string
+}
 
-const ChartGKM = () => {
+type ChartConfigOutput = {
+    [key: string]: {
+        label: string
+        color?: string
+    }
+}
+
+interface IPropsComponent {
+    data: IReportSKM[]
+}
+
+function transformData(input: IReportSKM[]): OutputDataChart[] {
+    return input.map((item) => {
+        const survey = item.category.replace(/\s+/g, '_')
+        const persentase = Math.round((item.average_answer * 100) / 3) // Mengonversi rata-rata menjadi persentase (skala 0-100)
+        const fill = `var(--color-${survey})`
+
+        return { survey, persentase, fill }
+    })
+}
+function transformToChartConfig(input: IReportSKM[]): ChartConfigOutput {
+    // Warna berdasarkan aturan (hijau atau kuning bergantian)
+    const colors = ['hsl(var(--chart-green))', 'hsl(var(--chart-yellow))']
+
+    // Objek awal untuk persentase
+    const result: ChartConfigOutput = {
+        persentase: {
+            label: 'Persentase',
+        },
+    }
+
+    input.forEach((item, index) => {
+        const key = item.category.replace(/\s+/g, '_')
+        result[key] = {
+            label: item.category,
+            color: colors[index % colors.length], // Warna bergantian hijau/kuning
+        }
+    })
+
+    return result
+}
+
+const ChartGKM: React.FC<IPropsComponent> = ({ data }) => {
+    const dataChart = transformData(data)
+
+    const chartConfig = transformToChartConfig(data) satisfies ChartConfig
+
     return (
-        <div className="h-[240px] w-full">
+        <div className="h-[340px] w-full">
             <ChartContainer className="h-full w-full" config={chartConfig}>
                 <BarChart
                     accessibilityLayer
-                    data={chartData}
+                    data={dataChart}
                     layout="vertical"
                     margin={{
-                        left: 100,
+                        left: 60,
                     }}
                 >
                     <YAxis
@@ -77,9 +78,14 @@ const ChartGKM = () => {
                         tickMargin={10}
                         fontSize={14}
                         axisLine={false}
+                        style={{
+                            textTransform: 'capitalize',
+                            backgroundColor: 'red',
+                        }}
                         tickFormatter={(value) =>
-                            chartConfig[value as keyof typeof chartConfig]
-                                ?.label
+                            chartConfig[
+                                value as keyof typeof chartConfig
+                            ]?.label.toLowerCase()
                         }
                         domain={[0, 100]}
                     />
