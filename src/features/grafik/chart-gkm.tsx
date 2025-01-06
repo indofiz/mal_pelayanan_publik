@@ -20,24 +20,40 @@ const chartConfig = {
     persentase: {
         label: 'Persentase',
     },
-    chrome: {
-        label: 'Persyaratan',
-        color: 'hsl(var(--chart-1))',
+    PERSYARATAN: {
+        label: 'PERSYARATAN',
+        color: 'hsl(var(--chart-green))',
     },
-    safari: {
-        label: 'Safari',
-        color: 'hsl(var(--chart-2))',
+    PROSEDUR: {
+        label: 'PROSEDUR',
+        color: 'hsl(var(--chart-yellow))',
     },
-    firefox: {
-        label: 'Kompetensi Pelaksana',
+    KECEPATAN_LAYANAN: {
+        label: 'KECEPATAN LAYANAN',
         color: 'hsl(var(--chart-3))',
     },
-    edge: {
-        label: 'Edge',
+    BIAYA_PELAYANAN: {
+        label: 'BIAYA PELAYANAN',
         color: 'hsl(var(--chart-4))',
     },
-    other: {
-        label: 'Other',
+    INFORMASI_LAYANAN: {
+        label: 'INFORMASI LAYANAN',
+        color: 'hsl(var(--chart-5))',
+    },
+    KOMPETENSI_PELAKSANA: {
+        label: 'KOMPETENSI PELAKSANA',
+        color: 'hsl(var(--chart-5))',
+    },
+    PERILAKU_PELAYANAN: {
+        label: 'PERILAKU PELAYANAN',
+        color: 'hsl(var(--chart-5))',
+    },
+    PENANGANAN_ADUAN: {
+        label: 'PENANGANAN ADUAN',
+        color: 'hsl(var(--chart-5))',
+    },
+    SARANA_PRASARANA: {
+        label: 'SARANA PRASARANA',
         color: 'hsl(var(--chart-5))',
     },
 } satisfies ChartConfig
@@ -51,7 +67,7 @@ const ChartGKM = () => {
                     data={chartData}
                     layout="vertical"
                     margin={{
-                        left: 28,
+                        left: 100,
                     }}
                 >
                     <YAxis
@@ -59,6 +75,7 @@ const ChartGKM = () => {
                         type="category"
                         tickLine={false}
                         tickMargin={10}
+                        fontSize={14}
                         axisLine={false}
                         tickFormatter={(value) =>
                             chartConfig[value as keyof typeof chartConfig]

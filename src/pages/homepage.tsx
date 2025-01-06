@@ -6,8 +6,8 @@ import { SearchHomepage } from '../features/hero-section/search-homepage'
 import ListInstansiPelayanan from '../features/list-instansi-pelayanan'
 import PelayananKami from '../features/pelayanan-kami'
 import { ModalPencarian } from '@/components/modal/modal-pencarian'
-// import GrafikContainer from '@/features/grafik'
 import { ModalLayananDeskripsi } from '@/components/modal/modal-deskripsi'
+import GrafikContainer from '@/features/grafik'
 
 export const Homepage = () => {
     return (
@@ -21,7 +21,7 @@ export const Homepage = () => {
             <SearchHomepage />
             <ListInstansiPelayanan />
             <PelayananKami />
-            {/* <GrafikContainer /> */}
+            <GrafikContainer />
             <Footer />
         </>
     )
