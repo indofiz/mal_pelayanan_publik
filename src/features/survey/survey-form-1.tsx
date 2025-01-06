@@ -28,6 +28,7 @@ import { getObjectLength } from '@/lib/objectLength'
 import SelectLayanan from '@/components/extentions/select-layanan'
 import { kelaminDataSurvey, statusKawinData } from '@/common/data/kelamin'
 import { toast } from 'sonner'
+import { useParams } from 'react-router-dom'
 
 const formSchema = z.object({
     email: z.string().email(),
@@ -70,7 +71,10 @@ const initialValues = {
 }
 
 export default function SurveyForm1() {
+    const { survey } = useParams()
     const { nextStep, updateRespondenData, respondenData } = useStepperStore()
+
+    const isFromAntrian = Boolean(survey !== undefined && survey !== '')
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -165,20 +169,24 @@ export default function SurveyForm1() {
                     )}
                 />
 
-                <FormField
-                    control={form.control}
-                    name="tenantId"
-                    render={({ field }) => (
-                        <FormItem className="flex flex-col">
-                            <FormLabel>Tenant Yang Ingin Disurvey :</FormLabel>
-                            <SelectLayanan
-                                onChange={field.onChange}
-                                value={field.value}
-                            />
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                {!isFromAntrian && (
+                    <FormField
+                        control={form.control}
+                        name="tenantId"
+                        render={({ field }) => (
+                            <FormItem className="flex flex-col">
+                                <FormLabel>
+                                    Tenant Yang Ingin Disurvey :
+                                </FormLabel>
+                                <SelectLayanan
+                                    onChange={field.onChange}
+                                    value={field.value}
+                                />
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                )}
 
                 <FormField
                     control={form.control}

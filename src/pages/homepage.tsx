@@ -6,18 +6,22 @@ import { SearchHomepage } from '../features/hero-section/search-homepage'
 import ListInstansiPelayanan from '../features/list-instansi-pelayanan'
 import PelayananKami from '../features/pelayanan-kami'
 import { ModalPencarian } from '@/components/modal/modal-pencarian'
+// import GrafikContainer from '@/features/grafik'
+import { ModalLayananDeskripsi } from '@/components/modal/modal-deskripsi'
 
 export const Homepage = () => {
     return (
         <>
             <ModalPencarian />
             <ModalLayanan />
+            <ModalLayananDeskripsi />
             <Header>
                 <HeroHomepage />
             </Header>
             <SearchHomepage />
             <ListInstansiPelayanan />
             <PelayananKami />
+            {/* <GrafikContainer /> */}
             <Footer />
         </>
     )

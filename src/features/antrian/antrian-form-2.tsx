@@ -14,7 +14,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { TimePickerDemo } from '@/components/extentions/date-time-picker-popup'
 import { Calendar } from '@/components/ui/calendar'
 import { useStepperAntrianStore } from '@/store/stepper/stepper-antrian-store'
-import { format, getHours, startOfToday } from 'date-fns'
+import { format, getHours, startOfToday, startOfTomorrow } from 'date-fns'
 import {
     Card,
     CardContent,
@@ -26,6 +26,7 @@ import { jsonToFormData } from '@/lib/jsonToFormData'
 import { useAntrianmMutation } from '@/common/query/query-antrian'
 import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
+import { id } from 'date-fns/locale'
 
 const formSchema = z.object({
     tanggal: z.date(),
@@ -104,11 +105,18 @@ export function AntrianForm2() {
                                                 mode="single"
                                                 selected={field.value}
                                                 onSelect={field.onChange}
-                                                disabled={(date) =>
-                                                    date < startOfToday() ||
-                                                    date >=
-                                                        new Date('3000-01-01')
-                                                }
+                                                disabled={[
+                                                    { dayOfWeek: [0, 6] },
+                                                    {
+                                                        before:
+                                                            getHours(
+                                                                new Date()
+                                                            ) >= 16
+                                                                ? startOfTomorrow()
+                                                                : startOfToday(),
+                                                    },
+                                                ]}
+                                                locale={id}
                                                 initialFocus
                                             />
                                         </div>

@@ -28,12 +28,12 @@ export const SurveyForm2 = () => {
 
     const dynamicSchema = createDynamicSchemaQuisioner({
         data: dataQuisioner?.data?.quesioners,
-        type: 'CHOICE',
+        type: 'SCALE',
     })
 
     const dynamicValue = createDynamicSchemaValue({
         data: dataQuisioner?.data?.quesioners,
-        type: 'CHOICE',
+        type: 'SCALE',
     })
 
     const form = useForm<z.infer<typeof dynamicSchema>>({
@@ -47,15 +47,6 @@ export const SurveyForm2 = () => {
         nextStep()
     }
 
-    // if (isLoading || isFetching || isRefetching)
-    //     return (
-    //         <div className="relative h-64">
-    //             <div className="inset-0 flex justify-center gap-2 items-center absolute">
-    //                 <Loader className=" animate-spin" />
-    //                 Loading...
-    //             </div>
-    //         </div>
-    //     )
     if (isLoading || isFetching || isRefetching)
         return (
             <div className="space-y-6">
@@ -74,7 +65,6 @@ export const SurveyForm2 = () => {
                 sub_message="Silahkan coba lagi, atau refresh halaman."
             />
         )
-
     return (
         <div className="flex flex-col gap-4">
             <Form {...form}>
@@ -83,7 +73,7 @@ export const SurveyForm2 = () => {
                     className="space-y-6"
                 >
                     {dataQuisioner?.data?.quesioners?.map((quisioner) =>
-                        quisioner.quesionerType === 'CHOICE' ? (
+                        quisioner.quesionerType === 'SCALE' ? (
                             <FormField
                                 key={quisioner.id}
                                 control={form.control}
