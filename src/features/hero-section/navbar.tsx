@@ -45,12 +45,12 @@ export const Navbar = () => {
                     >
                         Instansi
                     </Link>
-                    <Link
-                        to=""
+                    <a
+                        href="/PANDUAN_MPP_1.0.1.pdf"
                         className="font-semibold hover:text-green_primary transition-all duration-200 text-xl md:text-base"
                     >
-                        Petunjuk
-                    </Link>
+                        Panduan
+                    </a>
                 </div>
 
                 <div className="md:hidden relative z-[100]">

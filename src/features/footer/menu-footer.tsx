@@ -26,9 +26,9 @@ const data: IData[] = [
                 title: 'Instansi',
             },
             {
-                isExternal: false,
-                url: '/petunjuk',
-                title: 'Petunjuk',
+                isExternal: true,
+                url: '/PANDUAN_MPP_1.0.1.pdf',
+                title: 'Panduan',
             },
         ],
     },
