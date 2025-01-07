@@ -61,14 +61,14 @@ const ChartGKM: React.FC<IPropsComponent> = ({ data }) => {
     const chartConfig = transformToChartConfig(data) satisfies ChartConfig
 
     return (
-        <div className="h-[340px] w-full">
+        <div className="h-[280px] w-full">
             <ChartContainer className="h-full w-full" config={chartConfig}>
                 <BarChart
                     accessibilityLayer
                     data={dataChart}
                     layout="vertical"
                     margin={{
-                        left: 60,
+                        left: 110,
                     }}
                 >
                     <YAxis
@@ -80,13 +80,16 @@ const ChartGKM: React.FC<IPropsComponent> = ({ data }) => {
                         axisLine={false}
                         style={{
                             textTransform: 'capitalize',
-                            backgroundColor: 'red',
                         }}
                         tickFormatter={(value) =>
                             chartConfig[
                                 value as keyof typeof chartConfig
                             ]?.label.toLowerCase()
                         }
+                        tick={{
+                            width: 240, // Atur lebar label sesuai kebutuhan
+                            overflow: 'hidden', // Hindari line break
+                        }}
                         domain={[0, 100]}
                     />
                     <XAxis dataKey="persentase" type="number" hide />
