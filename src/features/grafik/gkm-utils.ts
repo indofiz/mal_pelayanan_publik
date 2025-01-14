@@ -1,3 +1,4 @@
+import { IReportKunjungan } from '@/common/query/query-kunjungan'
 import { IReportSKM } from '@/common/query/query-report-skm'
 
 type OutputDataChart = {
@@ -12,6 +13,17 @@ type ChartConfigOutput = {
         color?: string
     }
 }
+
+type InputDataSeriesKunjungan = {
+    series: number[]
+    dateLabels: string[]
+}
+
+type OutputDataKunjungan = {
+    label: string
+    kunjungan: number
+}[]
+
 export function transformData(input: IReportSKM[]): OutputDataChart[] {
     return input.map((item) => {
         const survey = item.category.replace(/\s+/g, '_')
@@ -42,4 +54,20 @@ export function transformToChartConfig(input: IReportSKM[]): ChartConfigOutput {
     })
 
     return result
+}
+
+export function transformDataSeriesKunjungan(
+    input: IReportKunjungan
+): OutputDataKunjungan {
+    const { series, dateLabels } = input
+
+    // Jika panjang series dan dateLabels berbeda, kembalikan array kosong
+    if (series.length !== dateLabels.length) {
+        throw new Error('Series and dateLabels must have the same length')
+    }
+
+    return series.map((value, index) => ({
+        label: dateLabels[index],
+        kunjungan: value,
+    }))
 }

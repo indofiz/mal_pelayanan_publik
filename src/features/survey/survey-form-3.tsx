@@ -161,7 +161,14 @@ export const SurveyForm3 = () => {
                         >
                             <ArrowLeft /> Kembali
                         </Button>
-                        <Button type="submit" size={'lg'}>
+                        <Button
+                            type="submit"
+                            size={'lg'}
+                            disabled={
+                                respondenMutation.isLoading ||
+                                surveyMutation.isLoading
+                            }
+                        >
                             <Save /> Submit Survey
                         </Button>
                     </div>

@@ -14,6 +14,9 @@ export const antrianUrl = baseUrl + 'antrian/save'
 
 export const quisionerUrl = baseUrlSkm + 'event/' + id_event
 export const reportSKMUrl = baseUrlSkm + 'reports/' + id_event
+export const kunjunganHarianURL = baseUrl + 'dashboard/antrian/daily'
+export const kunjunganMingguanURL = baseUrl + 'dashboard/antrian/weekly'
+export const kunjunganBulananURL = baseUrl + 'dashboard/antrian/monthly'
 export const surveyRespondenUrl =
     baseUrlSkm + 'survey/' + id_event + '/addresponden'
 export const surveySubmitUrl = baseUrlSkm + 'survey/' + id_event + '/submit'
