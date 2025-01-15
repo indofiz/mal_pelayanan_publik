@@ -9,6 +9,7 @@ const GrafikKepuasanMasyarakat: React.FC<IGrafikKepuasanMasyarakat> = ({
     className,
 }) => {
     const { data: dataReport, isLoading } = useReportSKMQuery()
+
     return (
         <div
             className={cn(

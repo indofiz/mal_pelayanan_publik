@@ -14,10 +14,10 @@ type ChartConfigOutput = {
     }
 }
 
-type InputDataSeriesKunjungan = {
-    series: number[]
-    dateLabels: string[]
-}
+// type InputDataSeriesKunjungan = {
+//     series: number[]
+//     dateLabels: string[]
+// }
 
 type OutputDataKunjungan = {
     label: string
@@ -27,7 +27,9 @@ type OutputDataKunjungan = {
 export function transformData(input: IReportSKM[]): OutputDataChart[] {
     return input.map((item) => {
         const survey = item.category.replace(/\s+/g, '_')
-        const persentase = Math.round((item.average_answer * 100) / 4) // Mengonversi rata-rata menjadi persentase (skala 0-100)
+        const persentase = Math.round(
+            (item.average_answer + Number.EPSILON) * 25
+        ) // Mengonversi rata-rata menjadi persentase (skala 0-100)
         const fill = `var(--color-${survey})`
 
         return { survey, persentase, fill }

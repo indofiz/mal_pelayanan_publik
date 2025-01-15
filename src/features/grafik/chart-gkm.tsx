@@ -13,10 +13,12 @@ interface IPropsComponent {
 }
 
 const ChartGKM: React.FC<IPropsComponent> = ({ data }) => {
+    console.log(data)
     const dataChart = transformData(data)
 
     const chartConfig = transformToChartConfig(data) satisfies ChartConfig
 
+    console.log(dataChart)
     return (
         <div className="h-[280px] w-full">
             <ChartContainer className="h-full w-full" config={chartConfig}>
