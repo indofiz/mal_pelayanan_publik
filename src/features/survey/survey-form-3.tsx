@@ -169,7 +169,14 @@ export const SurveyForm3 = () => {
                                 surveyMutation.isLoading
                             }
                         >
-                            <Save /> Submit Survey
+                            {respondenMutation.isLoading ||
+                            surveyMutation.isLoading ? (
+                                'Sedang Submit...'
+                            ) : (
+                                <>
+                                    <Save /> Submit Survey
+                                </>
+                            )}
                         </Button>
                     </div>
                 </form>

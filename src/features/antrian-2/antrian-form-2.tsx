@@ -158,7 +158,13 @@ export function Antrian2Form2() {
                                 size={'lg'}
                                 disabled={mutationPost.isLoading}
                             >
-                                <Check /> Ajukan Antrian
+                                {mutationPost.isLoading ? (
+                                    'Sedang Submit...'
+                                ) : (
+                                    <>
+                                        <Check /> Ajukan Antrian
+                                    </>
+                                )}
                             </Button>
                             <Button
                                 type="button"
