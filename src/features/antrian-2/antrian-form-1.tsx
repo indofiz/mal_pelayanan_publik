@@ -27,10 +27,14 @@ import { kelaminData, statusKawinData } from '@/common/data/kelamin'
 import { getObjectLength } from '@/lib/objectLength'
 import SelectPendidikan from '@/components/extentions/select-pendidikan'
 import SelectPekerjaan from '@/components/extentions/select-pekerjaan'
+import { Textarea } from '@/components/ui/textarea'
 
 const formSchema = z.object({
     nama_lengkap: z.string().min(1, {
         message: 'Nama Lengkap Harus Diisi.',
+    }),
+    alamat: z.string().min(1, {
+        message: 'Alamat Lengkap Harus Diisi.',
     }),
     usia: z.string().min(1, {
         message: 'Usia Harus Diisi.',
@@ -56,6 +60,7 @@ const formSchema = z.object({
 })
 const initialValues = {
     nama_lengkap: '',
+    alamat: '',
     usia: '',
     jenis_kelamin: '',
     status_kawin: '',
@@ -300,6 +305,23 @@ export default function Antrian2Form1() {
                                 onChange={field.onChange}
                                 value={field.value}
                             />
+
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="alamat"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Alamat :</FormLabel>
+                            <FormControl>
+                                <Textarea
+                                    placeholder="Masukan alamat lengkap"
+                                    {...field}
+                                />
+                            </FormControl>
 
                             <FormMessage />
                         </FormItem>

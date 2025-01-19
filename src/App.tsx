@@ -26,7 +26,7 @@ const router = createBrowserRouter([
                         alignItems: 'center',
                     }}
                 >
-                    <img src="/error.png" width={300} alt="" />
+                    <img src="/image/state/error.png" width={300} alt="" />
                     <h3
                         style={{
                             fontSize: 24,

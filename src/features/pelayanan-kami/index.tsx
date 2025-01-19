@@ -9,19 +9,19 @@ const PelayananKami = () => {
                 </h3>
                 <div className="flex gap-4 flex-col md:flex-row md:gap-8 lg:gap-12 md:mt-12 lg:mt-16">
                     <CardPelayananKami
-                        img="layanan-prioritas.png"
+                        img="image/layanan-kami/layanan-prioritas.png"
                         title="Layanan Prioritas"
                         desc="Layanan bagi masyarakat yang mengurus langsung atau
                             investasi dengan modal diatas Rp. 10 miliar keatas."
                     />
                     <CardPelayananKami
-                        img="layanan-mandiri.png"
+                        img="image/layanan-kami/layanan-mandiri.png"
                         title="Layanan Mandiri"
                         desc="Layanan yang ditujukan untuk masyarakat umum dan
                             penerima kuasa mengurus perizinan / non perizinan."
                     />
                     <CardPelayananKami
-                        img="layanan-disabilitas.png"
+                        img="image/layanan-kami/layanan-disabilitas.png"
                         title="Layanan Disabilitas"
                         desc="Layanan khusus dengan berbagai fasilitas penunjang
                             yang ditujukan bagi penyandang disabilitas."

@@ -23,7 +23,11 @@ const ListData = () => {
     if (isError || data?.data?.length == 0) {
         return (
             <div className="max-w-72 mx-auto ">
-                <img src="/no_data.png" className="w-48 mx-auto" alt="" />
+                <img
+                    src="image/state/no_data.png"
+                    className="w-48 mx-auto"
+                    alt=""
+                />
                 <div>
                     <h3 className="text-center text-2xl mt-6 font-semibold text-black_line">
                         Tidak Ada Data atau Server Bermasalah

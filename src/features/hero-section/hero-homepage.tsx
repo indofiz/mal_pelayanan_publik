@@ -11,7 +11,10 @@ export const HeroHomepage = () => {
                     Kota Pangkal Pinang
                 </h2>
                 <h3 className="text-center font-semibold text-sm md:text-xl md:font-semibold text-black_line mb-4 md:mt-6">
-                    Buka Senin - Jumat Dari Jam 08:00 Sampai 16:00
+                    Jam pelayanan Senin - Kamis : <strong>08:00</strong> -{' '}
+                    <strong>15:00</strong>, Jum’at : <strong>08:00</strong> -{' '}
+                    <strong>15:30</strong>, Sabtu - Minggu :{' '}
+                    <strong>Libur</strong>
                 </h3>
             </div>
             <div className="flex gap-2 flex-col md:flex-row px-6 mb-8 md:max-w-5xl md:mx-auto md:justify-center md:mb-28">

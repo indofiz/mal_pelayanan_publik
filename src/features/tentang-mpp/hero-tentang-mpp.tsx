@@ -12,7 +12,7 @@ const HeroTentangSection = () => {
                 />
                 <div className="mx-6 lg:flex-1 lg:h-full overflow-clip rounded-xl aspect-video">
                     <ReactPlayer
-                        url="/video_test.mp4"
+                        url="video/profile_MPP.mp4"
                         controls
                         muted
                         loop

@@ -6,7 +6,7 @@ const CardPelayanan = ({ instansi }: { instansi: IInstansi }) => {
     const handleImageError = (
         event: React.SyntheticEvent<HTMLImageElement, Event>
     ) => {
-        event.currentTarget.src = '/photo.png'
+        event.currentTarget.src = 'image/state/photo.png'
     }
 
     return (

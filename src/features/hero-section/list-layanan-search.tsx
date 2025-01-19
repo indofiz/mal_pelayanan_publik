@@ -25,7 +25,11 @@ export const ListLayananSearch = () => {
                 {!isError && !isLoading && data && data?.data?.length == 0 ? (
                     <div className="inset-0 absolute grid place-content-center">
                         <div className="flex flex-col justify-center items-center max-w-xs text-center">
-                            <img src="/file.png" className="w-20" alt="" />
+                            <img
+                                src="image/state/file.png"
+                                className="w-20"
+                                alt=""
+                            />
                             <div className="font-semibold mt-4 text-lg">
                                 Layanan Tidak Ditemukan
                             </div>

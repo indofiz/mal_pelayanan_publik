@@ -7,7 +7,7 @@ const ContentLayanan = () => {
     const { formData } = useLayananModalStore()
 
     return (
-        <ScrollArea className="px-4 h-[500px] px md:h-auto md:max-h-fit">
+        <ScrollArea className="px-4 h-[500px] px md:h-auto md:max-h-[calc(100vh-100px)]">
             <div className="flex flex-row justify-start items-center md:flex-row gap-7 md:px-0 mt-8 md:mt-0">
                 <div className="w-auto md:w-auto">
                     <img
@@ -31,7 +31,7 @@ const ContentLayanan = () => {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-3">
                     <CardModal
                         desc="Jumlah Layanan"
-                        img="jumlah-layanan.png"
+                        img="image/layanan/jumlah-layanan.png"
                         jumlah={
                             formData?.layanan.length
                                 ? formData?.layanan.length.toString()
@@ -40,7 +40,7 @@ const ContentLayanan = () => {
                     />
                     <CardModal
                         desc="Nomor Tenant"
-                        img="jumlah-loket.png"
+                        img="image/layanan/jumlah-loket.png"
                         jumlah={
                             formData?.no_tenant
                                 ? formData?.no_tenant.toString()
@@ -49,7 +49,7 @@ const ContentLayanan = () => {
                     />
                     <CardModal
                         desc="Jumlah Petugas"
-                        img="jumlah-petugas.png"
+                        img="image/layanan/jumlah-petugas.png"
                         jumlah={
                             formData?.jumlah_petugas
                                 ? formData?.jumlah_petugas.toString()
@@ -58,7 +58,7 @@ const ContentLayanan = () => {
                     />
                     <CardModal
                         desc="Total Kunjungan"
-                        img="total-kunjungan.png"
+                        img="image/layanan/total-kunjungan.png"
                         jumlah={
                             formData?.jumlah_petugas
                                 ? formData?.jumlah_petugas.toString()
