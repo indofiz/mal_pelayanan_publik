@@ -31,12 +31,15 @@ import { toast } from 'sonner'
 import { useParams } from 'react-router-dom'
 
 const formSchema = z.object({
-    email: z.string().email(),
+    email: z.string().email().optional(),
     whatsapp: z.string().min(1, {
         message: 'Nama Whatsapp Harus Diisi.',
     }),
     tenantId: z.string().min(1, {
         message: 'Tenant Harus Dipilih.',
+    }),
+    layananId: z.string().min(1, {
+        message: 'Layanan Harus Dipilih.',
     }),
     usia: z.string().min(1, {
         message: 'Usia Harus Diisi.',
@@ -68,6 +71,7 @@ const initialValues = {
     pekerjaan: '',
     statusMengurus: 'SENDIRI',
     tenantId: '',
+    layananId: '',
 }
 
 export default function SurveyForm1() {
