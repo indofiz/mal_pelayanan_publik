@@ -5,6 +5,7 @@ import StepperNumberAntrian from '@/features/antrian/stepper-number'
 import { useParams } from 'react-router-dom'
 import { useStepperAntrianStore } from '@/store/stepper/stepper-antrian-store'
 import { useEffect } from 'react'
+import ScrollToTopAntrian from '@/components/scroll-up-antrian'
 export const AntrianPage = () => {
     const { layanan } = useParams()
     const { updateFormData, reset } = useStepperAntrianStore()
@@ -16,6 +17,7 @@ export const AntrianPage = () => {
 
     return (
         <>
+            <ScrollToTopAntrian />
             <Header>
                 <div className="lg:max-w-5xl mx-auto md:mb-8 lg:mb-0">
                     <HeroAntrian />

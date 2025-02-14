@@ -176,13 +176,16 @@ export default function SurveyForm1() {
                 {!isFromAntrian && (
                     <FormField
                         control={form.control}
-                        name="tenantId"
+                        name="layananId"
                         render={({ field }) => (
                             <FormItem className="flex flex-col">
                                 <FormLabel>
                                     Tenant Yang Ingin Disurvey :
                                 </FormLabel>
                                 <SelectLayanan
+                                    onChangeTenantId={(value: string) =>
+                                        form.setValue('tenantId', value)
+                                    }
                                     onChange={field.onChange}
                                     value={field.value}
                                 />

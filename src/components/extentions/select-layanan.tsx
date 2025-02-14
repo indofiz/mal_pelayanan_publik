@@ -18,9 +18,14 @@ import { useDetailLayananQuery } from '@/common/query/query-layanan-detail'
 interface ISelectLayanan {
     value?: string
     onChange: (value: string) => void
+    onChangeTenantId?: (value: string) => void
 }
 
-const SelectLayanan: React.FC<ISelectLayanan> = ({ onChange, value }) => {
+const SelectLayanan: React.FC<ISelectLayanan> = ({
+    onChange,
+    onChangeTenantId,
+    value,
+}) => {
     const [keyword, setKeyword] = useState<string>('')
 
     const { data: layananData } = useLayananQuery({ keyword, per_page: 30 })
@@ -59,6 +64,7 @@ const SelectLayanan: React.FC<ISelectLayanan> = ({ onChange, value }) => {
                         <CommandInput
                             onValueChange={setKeyword}
                             placeholder="Cari layanan..."
+                            autoFocus={false}
                         />
                         <CommandList>
                             <CommandEmpty>
@@ -74,6 +80,10 @@ const SelectLayanan: React.FC<ISelectLayanan> = ({ onChange, value }) => {
                                                 onChange(
                                                     items.id_layanan.toString()
                                                 )
+                                                if (onChangeTenantId)
+                                                    onChangeTenantId(
+                                                        items.id_instansi.toString()
+                                                    )
                                                 setOpen(false)
                                             }}
                                         >

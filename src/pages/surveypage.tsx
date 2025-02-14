@@ -5,6 +5,7 @@ import HeroSurvey from '../features/survey/header-hero-survey'
 import StepperNumber from '../features/survey/stepper-number'
 import { useDetailAntrianQuery } from '@/common/query/query-antrian-detail'
 import { useStepperStore } from '@/store/stepper/stepper-store'
+import ScrollToTopSurvey from '@/components/scroll-up-survey'
 export const SurveyPage = () => {
     const { survey } = useParams()
     const { updateRespondenData } = useStepperStore()
@@ -28,7 +29,7 @@ export const SurveyPage = () => {
                         data?.data?.jenis_permohonan == '1'
                             ? 'SENDIRI'
                             : 'DIKUASAKAN',
-                    tenantId: String(data?.data?.id_layanan) ?? '',
+                    tenantId: String(data?.data?.id_layanan),
                 }
                 updateRespondenData(newData)
             }
@@ -37,6 +38,7 @@ export const SurveyPage = () => {
 
     return (
         <>
+            <ScrollToTopSurvey />
             <Header>
                 <div className="lg:max-w-5xl mx-auto md:mb-8 lg:mb-0">
                     <HeroSurvey />
