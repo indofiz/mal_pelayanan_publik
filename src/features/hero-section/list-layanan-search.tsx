@@ -63,7 +63,7 @@ const ListData = ({ data }: { data: IDataLayanan }) => {
                     to={'/antrian/' + data.id_layanan}
                     className="border flex border-green_primary text-white bg-green_primary rounded-lg py-2 items-center px-2 text-xs"
                 >
-                    Ambil Antrian
+                    Daftar Online
                 </Link>
             </div>
         </div>

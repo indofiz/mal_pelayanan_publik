@@ -207,7 +207,7 @@ export default function Antrian2Form1() {
                             <FormLabel>Usia :</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder="Masukan usia"
+                                    placeholder="Contoh : 20"
                                     type=""
                                     {...field}
                                 />

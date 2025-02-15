@@ -144,7 +144,8 @@ export const SurveyForm3 = () => {
                                             />
                                         </FormControl>
                                         <FormDescription>
-                                            Kritik dan saran tidak wajib diisi.
+                                            Kritik dan saran tidak wajib diisi
+                                            (jika tidak ada, isi dengan -).
                                         </FormDescription>
                                         <FormMessage />
                                     </FormItem>

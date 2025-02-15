@@ -18,7 +18,7 @@ export const createDynamicSchemaQuisioner = ({
                     ? z
                           .string()
                           .min(1, { message: 'Pertanyaan Ini Wajib Diisi.' })
-                    : z.string() // Setiap ID jadi key dengan nilai string
+                    : z.string().min(0) // Setiap ID jadi key dengan nilai string
             }
         })
     return z.object(schemaObject)

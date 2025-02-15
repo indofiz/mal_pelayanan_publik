@@ -23,7 +23,7 @@ export const HeroHomepage = () => {
                     to={'/antrian'}
                 >
                     <FaRegAddressBook size={24} strokeWidth={0.1} />
-                    Ambil Antrian
+                    Daftar Online
                 </Link>
                 <Link
                     className="h-14 flex gap-3 justify-center items-center hover:bg-black_line hover:text-white transition-all duration-200 rounded-md font-medium text-black_line bg-yellow_primary px-8 "

@@ -47,8 +47,11 @@ const SelectPendidikan: React.FC<ISelectPendidikan> = ({ onChange, value }) => {
                 </FormControl>
             </PopoverTrigger>
             <PopoverContent className="p-0 w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height]">
-                <Command>
-                    <CommandInput placeholder="Cari pendidikan..." />
+                <Command autoFocus={false}>
+                    <CommandInput
+                        placeholder="Cari pendidikan..."
+                        autoFocus={false}
+                    />
                     <CommandList>
                         <CommandEmpty>Pendidikan tidak ditemukan.</CommandEmpty>
                         <CommandGroup>

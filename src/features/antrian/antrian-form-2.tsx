@@ -57,7 +57,7 @@ export function AntrianForm2() {
                 mutationPost.mutate(formDatas, {
                     onSuccess: (data) => {
                         toast.success(
-                            `Antrian ${data.data.nama_lengkap} berhasil diajukan pada tanggal ${data.data.tanggal} jam ${data.data.jam}`
+                            `Pendaftaran ${data.data.nama_lengkap} berhasil diajukan pada tanggal ${data.data.tanggal} jam ${data.data.jam}`
                         )
                         reset()
                         setTimeout(() => {

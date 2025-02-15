@@ -28,7 +28,7 @@ export const CardLayananModal = ({ layanan }: { layanan: IDataLayanan }) => {
                         className="text-green_primary flex gap-2 items-center p-2 py-1 md:p-4 md:py-2 text-xs md:text-base border border-green_primary rounded-lg hover:bg-green_primary hover:text-white transition-all duration-200"
                     >
                         <BookAudioIcon size={20} />
-                        <span>Ambil Antrian</span>
+                        <span>Daftar Online</span>
                     </Link>
                 </div>
             </div>

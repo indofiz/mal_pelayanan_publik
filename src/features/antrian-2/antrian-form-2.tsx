@@ -66,7 +66,7 @@ export function Antrian2Form2() {
                 mutationPost.mutate(formDatas, {
                     onSuccess: (data) => {
                         toast.success(
-                            `Antrian ${data.data.nama_lengkap} berhasil diajukan pada tanggal ${data.data.tanggal} jam ${data.data.jam}`
+                            `Pendaftaran ${data.data.nama_lengkap} berhasil diajukan pada tanggal ${data.data.tanggal} jam ${data.data.jam}`
                         )
                         reset()
                         setTimeout(() => {
@@ -80,7 +80,8 @@ export function Antrian2Form2() {
             } else {
                 toast.error('Pilih jam antara 08:00 - 16:00')
             }
-        } catch (_error) {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (error) {
             toast.error(`Failed to submit the form. Please try again.`)
         }
     }

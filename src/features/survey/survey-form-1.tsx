@@ -62,7 +62,6 @@ const formSchema = z.object({
 })
 
 const initialValues = {
-    email: '',
     whatsapp: '',
     usia: '',
     gender: '',
@@ -250,7 +249,12 @@ export default function SurveyForm1() {
                     name="email"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Email :</FormLabel>
+                            <FormLabel>
+                                Email :{' '}
+                                <span className="text-muted-foreground text-xs">
+                                    (Opsional)
+                                </span>
+                            </FormLabel>
                             <FormControl>
                                 <Input
                                     placeholder="Masukan email"
