@@ -1,14 +1,14 @@
 import { useQuery } from 'react-query'
-import { instansiUrl } from '../url'
+import { instansiDetailUrl } from '../url'
 import { IDataLayanan } from './query-layanan'
 
 export interface IInstansiResponse {
     status: string
     message: string
-    data: IInstansi[]
+    data: IInstansiDetail
 }
 
-export interface IInstansi {
+export interface IInstansiDetail {
     id_instansi: number
     kode: string
     instansi: string
@@ -16,12 +16,14 @@ export interface IInstansi {
     jumlah_petugas: number
     logo: string
     aktif: string
-    layanan: IDataLayanan[]
+    deskripsi: string
+    total_antrian: number
+    service: IDataLayanan[]
 }
 
-export const useInstansiQuery = ({ id }: { id: string }) => {
+export const useInstansiDetailQuery = ({ id }: { id: string | number }) => {
     return useQuery<IInstansiResponse>(['instansi', id], async () => {
-        const response = await fetch(instansiUrl + '?per_page=100')
+        const response = await fetch(instansiDetailUrl + '/' + id)
         const data: IInstansiResponse = await response.json()
 
         if (!response.ok || !data.status) {

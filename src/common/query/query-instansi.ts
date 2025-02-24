@@ -1,6 +1,5 @@
 import { useQuery } from 'react-query'
 import { instansiUrl } from '../url'
-import { IDataLayanan } from './query-layanan'
 
 export interface IInstansiResponse {
     status: string
@@ -16,7 +15,7 @@ export interface IInstansi {
     jumlah_petugas: number
     logo: string
     aktif: string
-    layanan: IDataLayanan[]
+    deskripsi: string
 }
 
 export const useInstansiQuery = () => {

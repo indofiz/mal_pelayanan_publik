@@ -1,6 +1,7 @@
 import { IReportSKM, useReportSKMQuery } from '@/common/query/query-report-skm'
 import { cn } from '@/utils/utils'
 import { transformData } from './gkm-utils'
+import LoadingSKM from '@/components/loading/loading-ikm'
 
 interface IIndexKepuasan {
     className: string
@@ -17,7 +18,9 @@ const IndexKepuasan: React.FC<IIndexKepuasan> = ({ className }) => {
         >
             {!isLoading ? (
                 <DataTampil dataReport={dataReport?.data ?? []} />
-            ) : null}
+            ) : (
+                <LoadingSKM />
+            )}
         </div>
     )
 }

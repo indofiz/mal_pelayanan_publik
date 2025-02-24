@@ -13,7 +13,7 @@ const MapKontak = () => {
                 <div className="flex items-center gap-3">
                     <div className="p-[2px] border inline-flex rounded-xl border-green_primary ">
                         <div className="size-11 grid place-content-center rounded-[10px] bg-green_primary">
-                            <img src="svg/jadwal.svg" alt="" />
+                            <img src="/svg/jadwal.svg" alt="" />
                         </div>
                     </div>
                     <div className="text-black_line font-medium text-sm md:text-base">
@@ -23,7 +23,7 @@ const MapKontak = () => {
                 <div className="flex items-center gap-3">
                     <div className="p-[2px] border inline-flex rounded-xl border-green_primary ">
                         <div className="size-11 grid place-content-center rounded-[10px] bg-green_primary">
-                            <img src="svg/location.svg" alt="" />
+                            <img src="/svg/location.svg" alt="" />
                         </div>
                     </div>
                     <div className="text-black_line font-medium text-sm md:text-base">
@@ -34,7 +34,7 @@ const MapKontak = () => {
                 <div className="flex items-center gap-3">
                     <div className="p-[2px] border inline-flex rounded-xl border-green_primary ">
                         <div className="size-11 grid place-content-center rounded-[10px] bg-green_primary">
-                            <img src="svg/email.svg" alt="" />
+                            <img src="/svg/email.svg" alt="" />
                         </div>
                     </div>
                     <div className="text-black_line font-medium text-sm md:text-base">
@@ -44,7 +44,7 @@ const MapKontak = () => {
                 <div className="flex items-center gap-3">
                     <div className="p-[2px] border inline-flex rounded-xl border-green_primary ">
                         <div className="size-11 grid place-content-center rounded-[10px] bg-green_primary">
-                            <img src="svg/whatapp.svg" alt="" />
+                            <img src="/svg/whatapp.svg" alt="" />
                         </div>
                     </div>
                     <div className="text-black_line font-medium text-sm md:text-base">

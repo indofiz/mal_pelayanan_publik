@@ -14,7 +14,7 @@ const HeroAntrian = () => {
             <div className="pb-12  lg:text-center lg:mt-12">
                 <TitleHeader
                     isCenter
-                    title="Daftar Online"
+                    title="Daftar Online MPP"
                     subTitle={
                         layanan
                             ? `Lakukan Daftar Online layanan ${
@@ -22,7 +22,7 @@ const HeroAntrian = () => {
                               } ${layananDetailData?.data?.nama_instansi}`
                             : isLoading
                             ? 'Loading...'
-                            : 'Lakukan Daftar Online di Pangkalpinang'
+                            : 'Lakukan Daftar Online di MPP Kota Pangkal Pinang'
                     }
                     classNameSub="-mt-3 md:-mt-4"
                 />

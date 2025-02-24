@@ -53,13 +53,6 @@ export function Antrian2Form2() {
             tanggal: format(data.tanggal, 'yyyy-MM-dd'),
             jam: format(data.jam, 'HH:mm'),
         })
-        console.log({
-            ...formData,
-            ...data,
-            id_layanan: layanan,
-            tanggal: format(data.tanggal, 'yyyy-MM-dd'),
-            jam: format(data.jam, 'HH:mm'),
-        })
 
         try {
             if (data && getHours(data.jam) >= 8 && getHours(data.jam) <= 16) {

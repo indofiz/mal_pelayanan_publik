@@ -12,7 +12,6 @@ export const ProfilePage = () => {
             </Header>
             <RegulasiMPP />
             <FasilitasMPP />
-
             <Footer />
         </>
     )

@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query'
-import { reportSKMUrl } from '../url'
+import { reportSKMTenantUrl, reportSKMUrl } from '../url'
 
 export interface IResponse {
     status: string
@@ -18,6 +18,24 @@ export const useReportSKMQuery = () => {
         ['report_skm'],
         async () => {
             const response = await fetch(reportSKMUrl)
+            const data: IResponse = await response.json()
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok')
+            }
+            return data
+        },
+        {
+            refetchOnWindowFocus: false,
+        }
+    )
+}
+
+export const useReportSKMTenantQuery = ({ id }: { id: string }) => {
+    return useQuery<IResponse>(
+        ['report_skm', id],
+        async () => {
+            const response = await fetch(reportSKMTenantUrl + id)
             const data: IResponse = await response.json()
 
             if (!response.ok) {

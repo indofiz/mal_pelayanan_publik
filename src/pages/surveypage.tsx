@@ -15,7 +15,6 @@ export const SurveyPage = () => {
         onSuccess: (data) => {
             if (data.status === 'success') {
                 const newData = {
-                    email: '',
                     whatsapp: data?.data?.mobile ?? '',
                     usia: data?.data?.usia ?? 0,
                     gender:
@@ -29,7 +28,8 @@ export const SurveyPage = () => {
                         data?.data?.jenis_permohonan == '1'
                             ? 'SENDIRI'
                             : 'DIKUASAKAN',
-                    tenantId: String(data?.data?.id_layanan),
+                    tenantId: String(data?.data?.id_instansi),
+                    layananId: String(data?.data?.id_layanan),
                 }
                 updateRespondenData(newData)
             }

@@ -3,6 +3,7 @@ import { Heading3 } from '../../components/heading3'
 import { PhotoProvider, PhotoView } from 'react-photo-view'
 import 'react-photo-view/dist/react-photo-view.css'
 import { useFasilitasQuery } from '@/common/query/query-fasilitas'
+import { createMarkup } from '@/lib/createMarkup'
 
 export const FasilitasMPP = () => {
     const { data: dataFasilitas } = useFasilitasQuery()
@@ -24,7 +25,7 @@ export const FasilitasMPP = () => {
                                     <div
                                         key={fasilitas.id_fasilitas}
                                         className={cn(
-                                            'lg:col-span-1 relative',
+                                            'lg:col-span-1 relative group',
                                             isFullWidth ? 'col-span-2' : ''
                                         )}
                                     >
@@ -38,6 +39,12 @@ export const FasilitasMPP = () => {
                                                 className="w-full h-auto rounded-lg"
                                             />
                                         </PhotoView>
+                                        <div
+                                            className="group-hover:opacity-100 text-center curser-pointer opacity-0 transition-all duration-300 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-white/70 flex items-center justify-center p-8"
+                                            dangerouslySetInnerHTML={createMarkup(
+                                                fasilitas.deskripsi ?? ''
+                                            )}
+                                        />
                                     </div>
                                 )
                             })}

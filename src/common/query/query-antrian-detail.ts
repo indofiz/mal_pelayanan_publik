@@ -24,6 +24,7 @@ export interface IAntrianData {
     hadir: string
     mengisi_ikm: string
     id_layanan: number
+    id_instansi: number
     created_at: string // ISO date-time string
     updated_at: string // ISO date-time string
     wa_daftar_status: string | null

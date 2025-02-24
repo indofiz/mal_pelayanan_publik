@@ -28,6 +28,7 @@ import { getObjectLength } from '@/lib/objectLength'
 import SelectPendidikan from '@/components/extentions/select-pendidikan'
 import SelectPekerjaan from '@/components/extentions/select-pekerjaan'
 import { Textarea } from '@/components/ui/textarea'
+import InputNumber from '@/components/custom/input-number'
 
 const formSchema = z.object({
     nama_lengkap: z.string().min(1, {
@@ -72,7 +73,6 @@ const initialValues = {
 
 export default function Antrian2Form1() {
     const { nextStep, updateFormData, formData } = useStepperAntrianStore()
-    // console.log({ ...initialValues, ...formData })
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -84,7 +84,6 @@ export default function Antrian2Form1() {
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-            console.log(values)
             updateFormData(values)
             nextStep()
         } catch (error) {
@@ -187,7 +186,7 @@ export default function Antrian2Form1() {
                         <FormItem>
                             <FormLabel>Nomor HP :</FormLabel>
                             <FormControl>
-                                <Input
+                                <InputNumber
                                     placeholder="08xxxxxxxxxx"
                                     type="tel"
                                     {...field}
@@ -206,7 +205,7 @@ export default function Antrian2Form1() {
                         <FormItem>
                             <FormLabel>Usia :</FormLabel>
                             <FormControl>
-                                <Input
+                                <InputNumber
                                     placeholder="Contoh : 20"
                                     type=""
                                     {...field}

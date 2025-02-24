@@ -1,6 +1,7 @@
 import { cn } from '@/utils/utils'
 import ChartGKM from './chart-gkm'
 import { useReportSKMQuery } from '@/common/query/query-report-skm'
+import LoadingSkm from '@/components/loading/loading-skm'
 
 interface IGrafikKepuasanMasyarakat {
     className: string
@@ -29,7 +30,7 @@ const GrafikKepuasanMasyarakat: React.FC<IGrafikKepuasanMasyarakat> = ({
                 {!isLoading ? (
                     <ChartGKM data={dataReport?.data ?? []} />
                 ) : (
-                    <>LOADING...</>
+                    <LoadingSkm />
                 )}
             </div>
         </div>

@@ -9,6 +9,7 @@ import {
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from 'recharts'
 import { transformDataSeriesKunjungan } from './gkm-utils'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
+import LoadingKunjungan from '@/components/loading/loading-kunjungan-harian'
 
 const chartConfig = {
     kunjungan: {
@@ -27,7 +28,7 @@ const ChartKunjungan = ({
     const convertedData = transformDataSeriesKunjungan(data.data)
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return <LoadingKunjungan />
     }
 
     return (

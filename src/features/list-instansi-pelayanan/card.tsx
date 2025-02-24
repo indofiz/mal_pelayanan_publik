@@ -6,7 +6,7 @@ const CardPelayanan = ({ instansi }: { instansi: IInstansi }) => {
     const handleImageError = (
         event: React.SyntheticEvent<HTMLImageElement, Event>
     ) => {
-        event.currentTarget.src = 'image/state/photo.png'
+        event.currentTarget.src = '/image/state/photo.png'
     }
 
     return (
@@ -27,8 +27,8 @@ const CardPelayanan = ({ instansi }: { instansi: IInstansi }) => {
                     </div>
                 </div>
                 <div className="text-sm font-light text-text_card mt-3">
-                    Deskripsi Instansi Belum Tersedia, silahkan isi pada halaman
-                    admin
+                    {instansi?.deskripsi ??
+                        'Deskripsi Instansi Belum Tersedia, silahkan isi pada halaman admin'}
                 </div>
             </div>
             <button

@@ -29,6 +29,7 @@ import SelectLayanan from '@/components/extentions/select-layanan'
 import { kelaminDataSurvey, statusKawinData } from '@/common/data/kelamin'
 import { toast } from 'sonner'
 import { useParams } from 'react-router-dom'
+import InputNumber from '@/components/custom/input-number'
 
 const formSchema = z.object({
     email: z.string().email().optional(),
@@ -201,8 +202,8 @@ export default function SurveyForm1() {
                         <FormItem>
                             <FormLabel>Usia :</FormLabel>
                             <FormControl>
-                                <Input
-                                    placeholder="Masukan usia"
+                                <InputNumber
+                                    placeholder="Contoh: 20"
                                     type="tel"
                                     {...field}
                                 />
@@ -257,7 +258,7 @@ export default function SurveyForm1() {
                             </FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder="Masukan email"
+                                    placeholder="Contoh: mpp@example.com"
                                     type="email"
                                     {...field}
                                 />
@@ -274,8 +275,8 @@ export default function SurveyForm1() {
                         <FormItem>
                             <FormLabel>Nomor Whatsapp :</FormLabel>
                             <FormControl>
-                                <Input
-                                    placeholder="Masukan nomor whatsapp"
+                                <InputNumber
+                                    placeholder="Contoh: 08123456789"
                                     type="tel"
                                     {...field}
                                 />

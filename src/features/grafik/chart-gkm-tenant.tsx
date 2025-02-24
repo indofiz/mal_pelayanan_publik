@@ -5,60 +5,60 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from '@/components/ui/chart'
-import { Bar, BarChart, XAxis, YAxis } from 'recharts'
+import { Bar, BarChart, XAxis, YAxis, LabelList, CartesianGrid } from 'recharts'
 import { transformData, transformToChartConfig } from './gkm-utils'
 
 interface IPropsComponent {
     data: IReportSKM[]
 }
 
-const ChartGKM: React.FC<IPropsComponent> = ({ data }) => {
+const ChartGKMTenant: React.FC<IPropsComponent> = ({ data }) => {
     const dataChart = transformData(data)
-
     const chartConfig = transformToChartConfig(data) satisfies ChartConfig
 
+    console.log(dataChart)
+
     return (
-        <div className="h-[280px] w-full">
-            <ChartContainer className="h-full w-full" config={chartConfig}>
+        <div className="h-[280px] md:max-h-[300px] md:flex w-full">
+            <ChartContainer config={chartConfig} className="flex-1">
                 <BarChart
                     accessibilityLayer
                     data={dataChart}
                     layout="vertical"
-                    margin={{
-                        left: 110,
-                    }}
+                    margin={{ right: 0, left: -54 }}
                 >
+                    <CartesianGrid horizontal={false} vertical={false} />
                     <YAxis
                         dataKey="survey"
                         type="category"
                         tickLine={false}
                         tickMargin={10}
-                        fontSize={14}
                         axisLine={false}
-                        style={{
-                            textTransform: 'capitalize',
-                        }}
-                        tickFormatter={(value) =>
-                            chartConfig[
-                                value as keyof typeof chartConfig
-                            ]?.label.toLowerCase()
-                        }
+                        tickFormatter={(value) => value.replace(/_/g, ' ')}
                         tick={{
-                            width: 240, // Atur lebar label sesuai kebutuhan
-                            overflow: 'hidden', // Hindari line break
+                            display: 'none',
+                            width: 0,
                         }}
                         domain={[0, 100]}
                     />
                     <XAxis dataKey="persentase" type="number" hide />
                     <ChartTooltip
                         cursor={false}
-                        content={<ChartTooltipContent hideLabel />}
+                        content={<ChartTooltipContent indicator="line" />}
                     />
-                    <Bar dataKey="persentase" layout="vertical" radius={5} />
+                    <Bar dataKey="persentase" layout="vertical" radius={4}>
+                        <LabelList
+                            dataKey="survey"
+                            position="insideLeft"
+                            offset={8}
+                            className="fill-[--color-label]"
+                            fontSize={12}
+                        />
+                    </Bar>
                 </BarChart>
             </ChartContainer>
         </div>
     )
 }
 
-export default ChartGKM
+export default ChartGKMTenant

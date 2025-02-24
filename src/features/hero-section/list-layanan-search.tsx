@@ -26,7 +26,7 @@ export const ListLayananSearch = () => {
                     <div className="inset-0 absolute grid place-content-center">
                         <div className="flex flex-col justify-center items-center max-w-xs text-center">
                             <img
-                                src="image/state/file.png"
+                                src="/image/state/file.png"
                                 className="w-20"
                                 alt=""
                             />
