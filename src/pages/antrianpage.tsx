@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import { useStepperAntrianStore } from '@/store/stepper/stepper-antrian-store'
 import { useEffect } from 'react'
 import ScrollToTopAntrian from '@/components/scroll-up-antrian'
-export const AntrianPage = () => {
+const AntrianPage = () => {
     const { layanan } = useParams()
     const { updateFormData, reset } = useStepperAntrianStore()
 
@@ -28,3 +28,5 @@ export const AntrianPage = () => {
         </>
     )
 }
+
+export default AntrianPage

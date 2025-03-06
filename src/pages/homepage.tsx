@@ -9,7 +9,7 @@ import { ModalPencarian } from '@/components/modal/modal-pencarian'
 import { ModalLayananDeskripsi } from '@/components/modal/modal-deskripsi'
 import GrafikContainer from '@/features/grafik'
 
-export const Homepage = () => {
+const Homepage = () => {
     return (
         <>
             <ModalPencarian />
@@ -26,3 +26,5 @@ export const Homepage = () => {
         </>
     )
 }
+
+export default Homepage

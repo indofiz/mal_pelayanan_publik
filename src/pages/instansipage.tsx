@@ -4,7 +4,7 @@ import HeroInstansi from '@/features/instansipage/hero'
 import ContainerInstansiPage from '@/features/instansipage/container'
 import { ModalLayanan } from '@/components/modal/modal-layanan'
 import { ModalLayananDeskripsi } from '@/components/modal/modal-deskripsi'
-export const InstansiPage = () => {
+const InstansiPage = () => {
     return (
         <>
             <ModalLayanan />
@@ -19,3 +19,5 @@ export const InstansiPage = () => {
         </>
     )
 }
+
+export default InstansiPage

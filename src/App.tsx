@@ -1,14 +1,17 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import RootPage from './Root'
-// PAGE
-import { ProfilePage } from './pages/profilpage'
-import { SurveyPage } from './pages/surveypage'
-import { Homepage } from './pages/homepage'
-import { AntrianPage } from './pages/antrianpage'
 import { Toaster } from 'sonner'
-import { InstansiPage } from './pages/instansipage'
+import { Suspense, lazy } from 'react'
+import LoadingPage from './loading'
+
+// LAZY
+const RootPage = lazy(() => import('./Root'))
+const ProfilePage = lazy(() => import('./pages/profilpage'))
+const SurveyPage = lazy(() => import('./pages/surveypage'))
+const Homepage = lazy(() => import('./pages/homepage'))
+const AntrianPage = lazy(() => import('./pages/antrianpage'))
+const InstansiPage = lazy(() => import('./pages/instansipage'))
 
 const router = createBrowserRouter([
     {
@@ -78,8 +81,10 @@ const queryClient = new QueryClient()
 function App() {
     return (
         <QueryClientProvider client={queryClient}>
-            <Toaster position="top-center" richColors />
-            <RouterProvider router={router} />
+            <Suspense fallback={<LoadingPage />}>
+                <Toaster position="top-center" richColors />
+                <RouterProvider router={router} />
+            </Suspense>
         </QueryClientProvider>
     )
 }

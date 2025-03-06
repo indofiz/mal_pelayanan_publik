@@ -12,7 +12,7 @@ export const Navbar = () => {
     return (
         <div className="container mx-auto">
             <nav className="flex justify-between items-center px-4 py-3 md:py-8">
-                <Link to={'/'}>
+                <Link to={'/'} title="Beranda MPP Pangkalpinang">
                     <div className="flex items-center gap-2">
                         <img src={logoMPP} className="w-16 md:w-24" alt="" />
                         <img src={logoTitle} className="w-16 md:w-24" alt="" />
@@ -55,6 +55,7 @@ export const Navbar = () => {
 
                 <div className="md:hidden relative z-[100]">
                     <button
+                        title="Menu Button"
                         onClick={() => setMenu((prev) => !prev)}
                         className={cn(
                             'bg-white rounded size-12 grid place-content-center text-gray-700 border border-gray-200 shadow-sm',

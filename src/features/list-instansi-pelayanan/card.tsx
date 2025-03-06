@@ -10,7 +10,7 @@ const CardPelayanan = ({ instansi }: { instansi: IInstansi }) => {
     }
 
     return (
-        <div className="border flex flex-col justify-between border-border_card bg-white rounded-2xl p-4 md:p-8 relative z-0 overflow-clip">
+        <div className="border flex flex-col justify-between border-neutral-200 md:border-border_card bg-white rounded-2xl p-4 md:p-8 relative z-0 overflow-clip">
             <div>
                 <div className="size-36 bg-gradient-to-br via-green_thin from-green_primary opacity-50 rotate-90 to-white rounded-full absolute -top-12 -right-10 -z-[1]"></div>
                 <div className="flex gap-4 items-center md:flex-col md:items-start">
@@ -26,7 +26,7 @@ const CardPelayanan = ({ instansi }: { instansi: IInstansi }) => {
                         <span className="capitalize">{instansi?.instansi}</span>
                     </div>
                 </div>
-                <div className="text-sm font-light text-text_card mt-3">
+                <div className="text-sm font-light text-neutral-600 md:text-text_card mt-3">
                     {instansi?.deskripsi ??
                         'Deskripsi Instansi Belum Tersedia, silahkan isi pada halaman admin'}
                 </div>

@@ -78,7 +78,7 @@ export default MenuFooter
 export const MenuList = ({ item }: { item: IData }) => {
     return (
         <div className="mb-8 mx-2 md:mx-0">
-            <h5 className="text-lg mb-3 font-bold">{item?.title ?? ''}</h5>
+            <h4 className="text-lg mb-3 font-bold">{item?.title ?? ''}</h4>
             <ul className="flex flex-col gap-3 text-sm">
                 {item?.data?.length
                     ? item?.data?.map((subitem) => (

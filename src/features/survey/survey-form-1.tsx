@@ -28,7 +28,7 @@ import { getObjectLength } from '@/lib/objectLength'
 import SelectLayanan from '@/components/extentions/select-layanan'
 import { kelaminDataSurvey, statusKawinData } from '@/common/data/kelamin'
 import { toast } from 'sonner'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import InputNumber from '@/components/custom/input-number'
 
 const formSchema = z.object({
@@ -77,6 +77,7 @@ const initialValues = {
 export default function SurveyForm1() {
     const { survey } = useParams()
     const { nextStep, updateRespondenData, respondenData } = useStepperStore()
+    const navigate = useNavigate()
 
     const isFromAntrian = Boolean(survey !== undefined && survey !== '')
 
@@ -357,12 +358,12 @@ export default function SurveyForm1() {
                         Selanjutnya <ArrowRight />
                     </Button>
                     <Button
-                        type="reset"
+                        onClick={() => navigate('/')}
                         variant={'outline'}
                         className="md:flex-1"
                         size={'lg'}
                     >
-                        Reset
+                        Beranda
                     </Button>
                 </div>
             </form>

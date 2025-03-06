@@ -30,6 +30,7 @@ import SelectPekerjaan from '@/components/extentions/select-pekerjaan'
 import SelectLayanan from '@/components/extentions/select-layanan'
 import { Textarea } from '@/components/ui/textarea'
 import InputNumber from '@/components/custom/input-number'
+import { useNavigate } from 'react-router-dom'
 
 const formSchema = z.object({
     nama_lengkap: z.string().min(1, {
@@ -78,6 +79,7 @@ const initialValues = {
 
 export default function AntrianForm1() {
     const { nextStep, updateFormData, formData } = useStepperAntrianStore()
+    const navigate = useNavigate()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -354,12 +356,12 @@ export default function AntrianForm1() {
                         Selanjutnya <ArrowRight />
                     </Button>
                     <Button
-                        type="reset"
+                        onClick={() => navigate('/')}
                         variant={'outline'}
                         className="md:flex-1"
                         size={'lg'}
                     >
-                        Reset
+                        Beranda
                     </Button>
                 </div>
             </form>

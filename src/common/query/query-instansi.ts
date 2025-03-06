@@ -19,14 +19,18 @@ export interface IInstansi {
 }
 
 export const useInstansiQuery = () => {
-    return useQuery<IInstansiResponse>(['instansi'], async () => {
-        const response = await fetch(instansiUrl + '?per_page=100')
-        const data: IInstansiResponse = await response.json()
+    return useQuery<IInstansiResponse>(
+        ['instansi'],
+        async () => {
+            const response = await fetch(instansiUrl + '?per_page=100')
+            const data: IInstansiResponse = await response.json()
 
-        if (!response.ok || !data.status) {
-            throw new Error('Network response was not ok')
-        }
+            if (!response.ok || !data.status) {
+                throw new Error('Network response was not ok')
+            }
 
-        return data
-    })
+            return data
+        },
+        { refetchOnWindowFocus: false }
+    )
 }

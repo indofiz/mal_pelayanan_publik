@@ -15,10 +15,10 @@ export const Footer = () => {
                     <LogoFooter />
                     <MenuFooter />
                 </div>
-                <h6 className="bg-black_2 text-center py-4 mt-12 px-6 md:px-0">
+                <h5 className="bg-black_2 text-center py-4 mt-12 px-6 md:px-0">
                     Copyright &copy; Pangkalpinang {new Date().getFullYear()}{' '}
                     Pangkalpinang, Pangkal Kemenangan
-                </h6>
+                </h5>
             </footer>
         </>
     )

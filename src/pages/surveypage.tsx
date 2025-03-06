@@ -6,7 +6,7 @@ import StepperNumber from '../features/survey/stepper-number'
 import { useDetailAntrianQuery } from '@/common/query/query-antrian-detail'
 import { useStepperStore } from '@/store/stepper/stepper-store'
 import ScrollToTopSurvey from '@/components/scroll-up-survey'
-export const SurveyPage = () => {
+const SurveyPage = () => {
     const { survey } = useParams()
     const { updateRespondenData } = useStepperStore()
 
@@ -49,3 +49,5 @@ export const SurveyPage = () => {
         </>
     )
 }
+
+export default SurveyPage

@@ -5,7 +5,7 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from '@/components/ui/chart'
-import { Bar, BarChart, XAxis, YAxis, LabelList, CartesianGrid } from 'recharts'
+import { Bar, BarChart, XAxis, YAxis, LabelList } from 'recharts'
 import { transformData, transformToChartConfig } from './gkm-utils'
 
 interface IPropsComponent {
@@ -19,15 +19,16 @@ const ChartGKMTenant: React.FC<IPropsComponent> = ({ data }) => {
     console.log(dataChart)
 
     return (
-        <div className="h-[280px] md:max-h-[300px] md:flex w-full">
+        <div className="md:h-[280px] md:max-h-[300px]  md:inline-table w-full">
             <ChartContainer config={chartConfig} className="flex-1">
                 <BarChart
                     accessibilityLayer
                     data={dataChart}
                     layout="vertical"
                     margin={{ right: 0, left: -54 }}
+                    barGap={4}
+                    barSize={40}
                 >
-                    <CartesianGrid horizontal={false} vertical={false} />
                     <YAxis
                         dataKey="survey"
                         type="category"
@@ -35,18 +36,14 @@ const ChartGKMTenant: React.FC<IPropsComponent> = ({ data }) => {
                         tickMargin={10}
                         axisLine={false}
                         tickFormatter={(value) => value.replace(/_/g, ' ')}
-                        tick={{
-                            display: 'none',
-                            width: 0,
-                        }}
                         domain={[0, 100]}
                     />
                     <XAxis dataKey="persentase" type="number" hide />
                     <ChartTooltip
                         cursor={false}
-                        content={<ChartTooltipContent indicator="line" />}
+                        content={<ChartTooltipContent hideLabel />}
                     />
-                    <Bar dataKey="persentase" layout="vertical" radius={4}>
+                    <Bar dataKey="persentase" layout="vertical" radius={6}>
                         <LabelList
                             dataKey="survey"
                             position="insideLeft"
